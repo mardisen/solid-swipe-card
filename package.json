@@ -15,8 +15,7 @@
     "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
+    "size": "size-limit"
   },
   "peerDependencies": {},
   "husky": {
@@ -37,11 +36,11 @@
   "size-limit": [
     {
       "path": "dist/solidjs-swipe-card.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "25 KB"
     },
     {
       "path": "dist/solidjs-swipe-card.esm.js",
-      "limit": "10 KB"
+      "limit": "25 KB"
     }
   ],
   "devDependencies": {
