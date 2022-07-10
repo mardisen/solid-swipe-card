@@ -28,7 +28,7 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
         };
 
         speed = calcSpeed(lastPosition, finalPosition);
-        rotation = isDragging ? speed.x / 1000 * props.rotationMultiplier : 0;
+        rotation = isDragging ? (speed.x / 1000) * props.rotationMultiplier : 0;
 
         setStyle({
             transform: `translate(${finalPosition.x}px, ${finalPosition.y}px)
@@ -47,7 +47,7 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
                 transition: `ease-out ${props.snapBackDuration / 1000}s`
             });
 
-            setTimeout(() => setStyle({ transform: "none" }), props.snapBackDuration + 25);
+            setTimeout(() => setStyle({ transform: 'none' }), props.snapBackDuration + 25);
 
             speed = { x: 0, y: 0 };
         }
@@ -58,17 +58,19 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
         isDragging = false;
         if (velocity < props.threshold) {
             handleMove(offset);
-        }
-        else {
-            const diagonal = pythagoras({ x: document.body.clientWidth, y: document.body.clientHeight });
+        } else {
+            const diagonal = pythagoras({
+                x: document.body.clientWidth,
+                y: document.body.clientHeight
+            });
             const multiplier = diagonal / velocity;
 
             const finalPosition: Coordinate = {
-                x: lastPosition.x + (speed.x * multiplier),
-                y: lastPosition.y + (-speed.y * multiplier),
+                x: lastPosition.x + speed.x * multiplier,
+                y: lastPosition.y + -speed.y * multiplier
             };
 
-            const finalRotation = rotation + (props.maxRotation * (Math.random() - 0.5));
+            const finalRotation = rotation + props.maxRotation * (Math.random() - 0.5);
 
             setStyle({
                 transform: `translate(${finalPosition.x}px, ${finalPosition.y}px)
@@ -83,57 +85,51 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
         }
     };
 
-    const onMouseDown: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> =
-        event => {
-            event.preventDefault();
-            isDragging = true;
-            offset = mouseCoordinates(event);
-        };
+    const onMouseDown: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = event => {
+        event.preventDefault();
+        isDragging = true;
+        offset = mouseCoordinates(event);
+    };
 
-    const onTouchStart: JSX.EventHandlerUnion<HTMLDivElement, TouchEvent> =
-        event => {
-            event.preventDefault();
-            isDragging = true;
-            offset = touchCoordinates(event);
-        };
+    const onTouchStart: JSX.EventHandlerUnion<HTMLDivElement, TouchEvent> = event => {
+        event.preventDefault();
+        isDragging = true;
+        offset = touchCoordinates(event);
+    };
 
+    const onMouseMove: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = event => {
+        event.preventDefault();
+        if (isDragging) handleMove(mouseCoordinates(event));
+    };
 
-    const onMouseMove: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> =
-        event => {
-            event.preventDefault();
-            if (isDragging)
-                handleMove(mouseCoordinates(event));
-        };
+    const onTouchMove: JSX.EventHandlerUnion<HTMLDivElement, TouchEvent> = event => {
+        event.preventDefault();
+        if (isDragging) handleMove(touchCoordinates(event));
+    };
 
-    const onTouchMove: JSX.EventHandlerUnion<HTMLDivElement, TouchEvent> =
-        event => {
-            event.preventDefault();
-            if (isDragging)
-                handleMove(touchCoordinates(event));
-        };
+    const onDragEnd: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent | TouchEvent> = event => {
+        event.preventDefault();
+        if (isDragging) {
+            release();
+        }
+    };
 
-    const onDragEnd: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent | TouchEvent> =
-        event => {
-            event.preventDefault();
-            if (isDragging) {
-                release();
-            }
-        };
-
-    const element = <div
-        ref={ref}
-        class={`${!isDragging && "transition-all"} ` + props.class}
-        style={style()}
-        onMouseMove={onMouseMove}
-        onTouchMove={onTouchMove}
-        onMouseDown={onMouseDown}
-        onTouchStart={onTouchStart}
-        onMouseLeave={onDragEnd}
-        onMouseUp={onDragEnd}
-        onTouchEnd={onDragEnd}
-    >
-        {props.children}
-    </div>;
+    const element = (
+        <div
+            ref={ref}
+            class={`${!isDragging && 'transition-all'} ` + props.class}
+            style={style()}
+            onMouseMove={onMouseMove}
+            onTouchMove={onTouchMove}
+            onMouseDown={onMouseDown}
+            onTouchStart={onTouchStart}
+            onMouseLeave={onDragEnd}
+            onMouseUp={onDragEnd}
+            onTouchEnd={onDragEnd}
+        >
+            {props.children}
+        </div>
+    );
 
     // Ref setup
     if (props.apiRef) {
@@ -143,10 +139,9 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
             if (oldCallback) oldCallback();
             snapBack();
         };
-    };
+    }
 
-    if (props.ref)
-        props.ref.current = ref;
+    if (props.ref) props.ref.current = ref;
 
     return { element, ref: props.ref ? props.ref.current : ref, apiRef };
 };

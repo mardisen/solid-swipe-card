@@ -1,8 +1,8 @@
 export enum SwipeDirection {
-    RIGHT = "right",
-    LEFT = "left",
-    UP = "up",
-    DOWN = "down"
+    RIGHT = 'right',
+    LEFT = 'left',
+    UP = 'up',
+    DOWN = 'down'
 }
 
 export type SwipeCardRef = {
