@@ -23,16 +23,6 @@
         "prepack": "pinst --disable",
         "postpack": "pinst --enable"
     },
-    "size-limit": [
-        {
-            "path": "dist/solidjs-swipe-card.cjs.production.min.js",
-            "limit": "25 KB"
-        },
-        {
-            "path": "dist/solidjs-swipe-card.esm.js",
-            "limit": "25 KB"
-        }
-    ],
     "peerDependencies": {
         "solid-js": ">=1.0.0<2"
     },
