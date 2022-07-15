@@ -1,103 +1,160 @@
-# TSDX User Guide
+# SolidJS Swipe Card
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+A SolidJS swipeable card component (tinder-like) heavily inspired by [react-tinder-card](https://github.com/3DJakob/react-tinder-card).
 
-> This TSDX setup is meant for developing libraries (not apps!) that can be published to NPM. If you’re looking to build a Node app, you could use `ts-node-dev`, plain `ts-node`, or simple `tsc`.
+Bootstrapped using [tsdx](https://github.com/jaredpalmer/tsdx).
 
-> If you’re new to TypeScript, checkout [this handy cheatsheet](https://devhints.io/typescript)
+## Installing
 
-## Commands
-
-TSDX scaffolds your new library inside `/src`.
-
-To run TSDX, use:
+To install, run
 
 ```bash
-npm start # or yarn start
+npm install solidjs-swipe-card
+# or
+yarn add solidjs-swipe-card
 ```
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
+## Quick Start
 
-To do a one-off build, use `npm run build` or `yarn build`.
+```jsx
+import { SwipeCard } from 'solidjs-swipe-card';
 
-To run tests, use `npm test` or `yarn test`.
-
-## Configuration
-
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
-
-### Jest
-
-Jest tests are set up to run with `npm test` or `yarn test`.
-
-### Bundle Analysis
-
-[`size-limit`](https://github.com/ai/size-limit) is set up to calculate the real cost of your library with `npm run size` and visualize the bundle with `npm run analyze`.
-
-#### Setup Files
-
-This is the folder structure we set up for you:
-
-```txt
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
+const App = () => {
+    return (
+        <div>
+            <SwipeCard class="...">
+                <div>I'm a Swipe Card!</div>
+            </SwipeCard>
+        </div>
+    );
+};
 ```
 
-### Rollup
+## Props
 
-TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
+Both `createSwipeCard` and `SwipeCard` use the same prop structure, defined as follows:
 
-### TypeScript
+### `class`
 
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
+-   optional
+-   type: `string`
 
-## Continuous Integration
+Additional CSS class(es) to assign to the component.
 
-### GitHub Actions
+### `threshold`
 
-Two actions are added by default:
+-   optional
+-   type:`number`
+-   default: `300`
 
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [`size-limit`](https://github.com/ai/size-limit)
+The threshold for considering wether or not a card is swiped. It is based on the speed of which the component moves (px/s). A lower number will make it easier to register a swipe, a higher one will make it harder.
 
-## Optimizations
+### `rotationMultiplier`
 
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
+-   optional
+-   type: `number`
+-   default: 7.5
+
+The coefficient of the rotation. A lower number will make it rotate less, a higher one more.
+
+### `maxRotation`
+
+-   optional
+-   type: `number`
+-   default: 90
+
+The maximum rotation degrees (ranging from `-maxRotation/2` to `+maxRotation/2`) to add when releasing a card.
+
+### `bounce`
+
+-   optional
+-   type: `number`
+-   default: 0.1
+
+The bounce power of which the card will sway back before returning to its original position when [`bringBack`](#bringback) is called.
+
+Keep it between -0.5 and 0.5 to avoid the card flinging on the other side of the screen.
+
+### `snapBackDuration`
+
+-   optional
+-   type: `number`
+-   default: 300
+
+The duration of the animation (in ms) triggered by [`bringBack`](#bringback).
+
+### `onSwipe`
+
+-   optional
+-   type: `(direction: SwipeDirection) => void`
+-   default: `() => {}`
+
+The callback to invoke after the card has registered a swipe (before it has finished animating).
+
+### `apiRef`
+
+-   optional
+-   type: `SwipeCardRef`
+
+The reference to access the methods of the card. See [apiRef](#apiref-1) for the available methods.
+
+> NOTE: Currently, to pass it in typescript, you'd need to declare the apiRef as follows: `const swipeCardRef: SwipeCardRef = {};`
+
+### `ref`
+
+-   optional
+-   type: `any`
+
+The ref variable that will be forwarded directly to the card component.
+
+## createSwipeCard
 
 ```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
-}
+import { createSwipeCard } from 'solidjs-swipe-card';
+const { element, ref, apiRef } = createSwipeCard(props);
 ```
 
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
+This primitive returns 3 objects:
 
-## Module Formats
+### `element`
 
-CJS, ESModules, and UMD module formats are supported.
+The rendered solid-js component, ready for use.
 
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
+### `ref`
 
-## Named Exports
+The ref that attaches directly to the component.
 
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
+### `apiRef`
 
-## Including Styles
+`apiRef` exposes utility methods to control the behaviour of the card.
 
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
+Currently, the available methods are:
 
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
+#### `bringBack()`
 
-## Publishing to NPM
+-   Returns `void`
 
-We recommend using [np](https://github.com/sindresorhus/np).
+It will reset to the original position the card if it has been swiped.
+
+## SwipeCard
+
+Under the hood, SwipeCard uses `createSwipeCard`, passing its props and returning the element.
+
+```jsx
+import { SwipeCard } from 'solidjs-swipe-card';
+let ref;
+let apiRef;
+//...
+<SwipeCard class="..." ref={ref} apiRef={apiRef}>
+    <div>I'm a Swipe Card!</div>
+</SwipeCard>;
+//...
+```
+
+## Contributing
+
+TODO
+
+## Additional Notes
+
+This is my first library that I'm writing, I'm open to constructive criticism about the repo structure, code quality and design choices.
