@@ -29,6 +29,6 @@ jobs:
           cmd: install --immutable --ignore-scripts
       - uses: borales/actions-yarn@v3.0.0
         with:
-          auth-token: ${{secrets.npm_token}}
+          auth-token: ${{secrets.NPM_TOKEN}}
           cmd: publish
           
