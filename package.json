@@ -1,61 +1,67 @@
 {
-  "version": "0.1.0",
-  "license": "MIT",
-  "main": "dist/index.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit"
-  },
-  "peerDependencies": {},
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "prettier": {
-    "printWidth": 120,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "none",
-    "tabWidth": 4
-  },
-  "name": "solidjs-swipe-card",
-  "author": "mardisen",
-  "module": "dist/solidjs-swipe-card.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/solidjs-swipe-card.cjs.production.min.js",
-      "limit": "25 KB"
+    "name": "solidjs-swipe-card",
+    "description": "A SolidJS swipeable card component (tinder-like)",
+    "author": "mardisen",
+    "repository": "mardisen/solidjs-swipe-card",
+    "version": "0.1.0",
+    "license": "MIT",
+    "private": false,
+    "keywords": [
+        "solid-js",
+        "solid",
+        "tinder",
+        "card",
+        "web",
+        "swipeable",
+        "swipe",
+        "physics",
+        "deck",
+        "drag",
+        "draggable"
+    ],
+    "main": "dist/index.ts",
+    "module": "dist/solidjs-swipe-card.esm.js",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "engines": {
+        "node": ">=10"
     },
-    {
-      "path": "dist/solidjs-swipe-card.esm.js",
-      "limit": "25 KB"
+    "scripts": {
+        "start": "tsdx watch",
+        "build": "tsdx build",
+        "test": "jest",
+        "lint": "tsdx lint",
+        "prepare": "tsdx build",
+        "size": "size-limit",
+        "postinstall": "husky install",
+        "prepack": "pinst --disable",
+        "postpack": "pinst --enable"
+    },
+    "peerDependencies": {
+        "solid-js": ">=1.0.0<2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.18.6",
+        "@jest/types": "^28.1.3",
+        "@size-limit/preset-small-lib": "^7.0.8",
+        "babel-preset-solid": "^1.4.6",
+        "husky": "^8.0.1",
+        "jest": "^28.1.3",
+        "pinst": "^3.0.0",
+        "size-limit": "^7.0.8",
+        "ts-jest": "^28.0.6",
+        "tsdx": "^0.14.1",
+        "tslib": "^2.4.0",
+        "typescript": "^4.7.4"
+    },
+    "dependencies": {
+        "solid-js": "^1.4.7"
+    },
+    "resolutions": {
+        "**/typescript": "^4.1.0",
+        "**/ts-jest": "^28.0.6",
+        "**/jest": "^28.1.3"
     }
-  ],
-  "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.8",
-    "babel-preset-solid": "^1.4.6",
-    "husky": "^8.0.1",
-    "size-limit": "^7.0.8",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.4.0",
-    "typescript": "^4.7.4"
-  },
-  "dependencies": {
-    "solid-js": "^1.4.7"
-  },
-  "resolutions": {
-    "**/typescript": "^4.1.0"
-  }
 }
