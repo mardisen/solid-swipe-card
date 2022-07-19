@@ -37,7 +37,7 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
         lastPosition = finalPosition;
     };
 
-    const snapBack = () => {
+    const snapBack = async () => {
         if (isReleased) {
             isReleased = false;
             setStyle({
@@ -46,7 +46,7 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
                 transition: `ease-out ${props.snapBackDuration / 1000}s`
             });
 
-            setTimeout(() => setStyle({ transform: 'none' }), props.snapBackDuration + 25);
+            await new Promise(() => setTimeout(() => setStyle({ transform: 'none' }), props.snapBackDuration + 25));
 
             speed = { x: 0, y: 0 };
         }
@@ -131,9 +131,9 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
     if (props.apiRef) {
         const oldCallback = props.apiRef.bringBack;
 
-        props.apiRef.bringBack = () => {
+        props.apiRef.bringBack = async () => {
             if (oldCallback) oldCallback();
-            snapBack();
+            await snapBack();
         };
     }
 
