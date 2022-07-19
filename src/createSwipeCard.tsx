@@ -5,7 +5,6 @@ import { Coordinate, Speed, SwipeCardProps, SwipeCardRef, TemporalCoordinate } f
 const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
     const props = mergeProps(PropsDefault, initialProps);
     const apiRef: SwipeCardRef = {};
-    let ref;
 
     const [style, setStyle] = createSignal<JSX.CSSProperties>({});
 
@@ -59,10 +58,7 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
         if (velocity < props.threshold) {
             handleMove(offset);
         } else {
-            const diagonal = pythagoras({
-                x: document.body.clientWidth,
-                y: document.body.clientHeight
-            });
+            const diagonal = pythagoras({ x: document.body.clientWidth, y: document.body.clientHeight });
             const multiplier = diagonal / velocity;
 
             const finalPosition: Coordinate = {
@@ -116,7 +112,7 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
 
     const element = (
         <div
-            ref={ref}
+            ref={props.ref}
             class={`${!isDragging && 'transition-all'} ` + props.class}
             style={style()}
             onMouseMove={onMouseMove}
@@ -141,9 +137,7 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
         };
     }
 
-    if (props.ref) props.ref.current = ref;
-
-    return { element, ref: props.ref ? props.ref.current : ref, apiRef };
+    return { element, ref: props.ref, apiRef };
 };
 
 export default createSwipeCard;
