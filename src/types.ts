@@ -6,17 +6,22 @@ export enum SwipeDirection {
 }
 
 export type SwipeCardRef = {
+    // TODO: rename to snapBack
     bringBack?: () => void;
 };
 
 export type SwipeCardProps = {
+    // TODO: add style
+    // TODO: add id
     class?: string;
     threshold?: number;
     rotationMultiplier?: number;
     maxRotation?: number;
+    // TODO: rename to bouncePower
     bounce?: number;
     snapBackDuration?: number;
     onSwipe?: (direction: SwipeDirection) => void;
+    // TODO: refactor so the type won't be needed
     apiRef?: SwipeCardRef;
     ref?: any;
 };
