@@ -131,11 +131,13 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
     if (props.apiRef) {
         const oldCallback = props.apiRef.snapBack;
 
-        props.apiRef.snapBack = async () => {
+        apiRef.snapBack = async () => {
             await snapBack();
             if (oldCallback) await oldCallback();
         };
-    }
+    } else apiRef.snapBack = snapBack;
+
+    Object.assign(props.apiRef, apiRef);
 
     return { element, ref: props.ref, apiRef };
 };
