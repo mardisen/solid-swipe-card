@@ -6,8 +6,7 @@ export enum SwipeDirection {
 }
 
 export type SwipeCardRef = {
-    // TODO: rename to snapBack
-    bringBack?: () => void;
+    snapBack?: () => Promise<void> | void;
 };
 
 export type SwipeCardProps = {

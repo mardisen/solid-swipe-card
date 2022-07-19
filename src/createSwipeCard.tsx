@@ -129,11 +129,11 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
 
     // Ref setup
     if (props.apiRef) {
-        const oldCallback = props.apiRef.bringBack;
+        const oldCallback = props.apiRef.snapBack;
 
-        props.apiRef.bringBack = async () => {
-            if (oldCallback) oldCallback();
+        props.apiRef.snapBack = async () => {
             await snapBack();
+            if (oldCallback) await oldCallback();
         };
     }
 

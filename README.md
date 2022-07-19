@@ -130,11 +130,11 @@ The ref that attaches directly to the component.
 
 Currently, the available methods are:
 
-#### `bringBack()`
+#### `snapBack()`
 
--   Returns `void`
+-   Returns `Promise<void>`
 
-It will reset to the original position the card if it has been swiped.
+It will reset to the original position the card if it has been swiped. Since it is async, it can be awaited if needed. 
 
 ## SwipeCard
 
