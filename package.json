@@ -3,7 +3,7 @@
     "description": "A SolidJS swipeable card component (tinder-like)",
     "author": "mardisen",
     "repository": "mardisen/solidjs-swipe-card",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "license": "MIT",
     "private": false,
     "keywords": [
