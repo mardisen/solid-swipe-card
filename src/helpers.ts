@@ -6,7 +6,7 @@ export const PropsDefault: SwipeCardProps = {
     rotationMultiplier: 7.5,
     maxRotation: 90,
     snapBackDuration: 300,
-    bounce: 0.1,
+    bouncePower: 0.1,
     onSwipe: () => {}
 };
 

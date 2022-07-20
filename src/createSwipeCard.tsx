@@ -41,8 +41,9 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
         if (isReleased) {
             isReleased = false;
             setStyle({
-                transform: `translate(${lastPosition.x * -props.bounce}px, ${lastPosition.y * -props.bounce}px)
-                rotate(${rotation * -props.bounce}deg)`,
+                transform: `translate(${lastPosition.x * -props.bouncePower}px, ${lastPosition.y *
+                    -props.bouncePower}px)
+                rotate(${rotation * -props.bouncePower}deg)`,
                 transition: `ease-out ${props.snapBackDuration / 1000}s`
             });
 

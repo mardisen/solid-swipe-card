@@ -16,8 +16,7 @@ export type SwipeCardProps = {
     threshold?: number;
     rotationMultiplier?: number;
     maxRotation?: number;
-    // TODO: rename to bouncePower
-    bounce?: number;
+    bouncePower?: number;
     snapBackDuration?: number;
     onSwipe?: (direction: SwipeDirection) => void;
     // TODO: refactor so the type won't be needed
