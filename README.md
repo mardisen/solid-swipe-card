@@ -107,7 +107,7 @@ The coefficient of the rotation. A lower number will make it rotate less, a high
 
 The maximum rotation degrees (ranging from `-maxRotation/2` to `+maxRotation/2`) to add when releasing a card.
 
-### `bounce`
+### `bouncePower`
 
 -   optional
 -   type: `number`
