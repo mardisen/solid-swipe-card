@@ -5,7 +5,6 @@ import { Coordinate, Speed, SwipeCardProps, SwipeCardRef, TemporalCoordinate } f
 const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
     const props = mergeProps(PropsDefault, initialProps);
     const apiRef: SwipeCardRef = {};
-    let ref;
 
     const [style, setStyle] = createSignal<JSX.CSSProperties>({});
 
@@ -38,16 +37,17 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
         lastPosition = finalPosition;
     };
 
-    const snapBack = () => {
+    const snapBack = async () => {
         if (isReleased) {
             isReleased = false;
             setStyle({
-                transform: `translate(${lastPosition.x * -props.bounce}px, ${lastPosition.y * -props.bounce}px)
-                rotate(${rotation * -props.bounce}deg)`,
+                transform: `translate(${lastPosition.x * -props.bouncePower}px, ${lastPosition.y *
+                    -props.bouncePower}px)
+                rotate(${rotation * -props.bouncePower}deg)`,
                 transition: `ease-out ${props.snapBackDuration / 1000}s`
             });
 
-            setTimeout(() => setStyle({ transform: 'none' }), props.snapBackDuration + 25);
+            await new Promise(() => setTimeout(() => setStyle({ transform: 'none' }), props.snapBackDuration + 25));
 
             speed = { x: 0, y: 0 };
         }
@@ -59,10 +59,7 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
         if (velocity < props.threshold) {
             handleMove(offset);
         } else {
-            const diagonal = pythagoras({
-                x: document.body.clientWidth,
-                y: document.body.clientHeight
-            });
+            const diagonal = pythagoras({ x: document.body.clientWidth, y: document.body.clientHeight });
             const multiplier = diagonal / velocity;
 
             const finalPosition: Coordinate = {
@@ -116,7 +113,7 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
 
     const element = (
         <div
-            ref={ref}
+            ref={props.ref}
             class={`${!isDragging && 'transition-all'} ` + props.class}
             style={style()}
             onMouseMove={onMouseMove}
@@ -133,17 +130,17 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
 
     // Ref setup
     if (props.apiRef) {
-        const oldCallback = props.apiRef.bringBack;
+        const oldCallback = props.apiRef.snapBack;
 
-        props.apiRef.bringBack = () => {
-            if (oldCallback) oldCallback();
-            snapBack();
+        apiRef.snapBack = async () => {
+            await snapBack();
+            if (oldCallback) await oldCallback();
         };
-    }
+    } else apiRef.snapBack = snapBack;
 
-    if (props.ref) props.ref.current = ref;
+    Object.assign(props.apiRef, apiRef);
 
-    return { element, ref: props.ref ? props.ref.current : ref, apiRef };
+    return { element, ref: props.ref, apiRef };
 };
 
 export default createSwipeCard;
