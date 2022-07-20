@@ -19,7 +19,7 @@
         "drag",
         "draggable"
     ],
-    "main": "dist/index.ts",
+    "main": "dist/index.d.ts",
     "module": "dist/solidjs-swipe-card.esm.js",
     "files": [
         "dist",
