@@ -1,8 +1,8 @@
 # SolidJS Swipe Card
 
-A SolidJS swipeable card component (tinder-like) heavily inspired by [react-tinder-card](https://github.com/3DJakob/react-tinder-card).
+A SolidJS swipeable card component (tinder-like) heavily inspired by [`react-tinder-card`](https://github.com/3DJakob/react-tinder-card).
 
-Bootstrapped using [tsdx](https://github.com/jaredpalmer/tsdx).
+Bootstrapped using [`tsdx`](https://github.com/jaredpalmer/tsdx).
 
 ## Installing
 
@@ -32,7 +32,49 @@ const App = () => {
 
 ## Props
 
-Both `createSwipeCard` and `SwipeCard` use the same prop structure, defined as follows:
+Both `createSwipeCard` and `SwipeCard` use the same prop structure, defined in [`SwipeCardProps`](#swipecardprops)
+
+## createSwipeCard
+
+```js
+import { createSwipeCard } from 'solidjs-swipe-card';
+const { element, ref, apiRef } = createSwipeCard(props);
+```
+
+This primitive returns 3 objects:
+
+### `element`
+
+The rendered solid-js component, ready for use.
+
+### `ref`
+
+The ref that attaches directly to the component.
+
+### `apiRef`
+
+The reference to access the methods of the card. See [`SwipeCardRef`](#swipecardref) for the available methods.
+
+## SwipeCard
+
+Under the hood, SwipeCard uses `createSwipeCard`, passing its props and returning the element.
+
+```tsx
+import { SwipeCard } from 'solidjs-swipe-card';
+let ref;
+let apiRef: SwipeCardRef;
+//...
+<SwipeCard class="..." ref={ref} apiRef={apiRef}>
+    <div>I'm a Swipe Card!</div>
+</SwipeCard>;
+//...
+```
+
+## Types
+
+### SwipeCardProps
+
+The type that defines what props [`SwipeCard`](#swipecard) and [`createSwipeCard`](#createswipecard) use.
 
 ### `class`
 
@@ -65,7 +107,7 @@ The coefficient of the rotation. A lower number will make it rotate less, a high
 
 The maximum rotation degrees (ranging from `-maxRotation/2` to `+maxRotation/2`) to add when releasing a card.
 
-### `bounce`
+### `bouncePower`
 
 -   optional
 -   type: `number`
@@ -89,14 +131,15 @@ The duration of the animation (in ms) triggered by [`bringBack`](#bringback).
 -   type: `(direction: SwipeDirection) => void`
 -   default: `() => {}`
 
-The callback to invoke after the card has registered a swipe (before it has finished animating).
+The callback to invoke after the card has registered a swipe (before it has finished animating). It will also return a enum describing the direction of the swipe (see [`SwipeDirection`](#swipedirection)).
+Props
 
 ### `apiRef`
 
 -   optional
--   type: `SwipeCardRef`
+-   type: [`SwipeCardRef`](#swipecardref)
 
-The reference to access the methods of the card. See [apiRef](#apiref-1) for the available methods.
+The reference to access the methods of the card. See [`SwipeCardRef`](#swipecardref) for the available methods.
 
 > NOTE: Currently, to pass it in typescript, you'd need to declare the apiRef as follows: `const swipeCardRef: SwipeCardRef = {};`
 
@@ -107,49 +150,28 @@ The reference to access the methods of the card. See [apiRef](#apiref-1) for the
 
 The ref variable that will be forwarded directly to the card component.
 
-## createSwipeCard
+### SwipeDirection
 
-```js
-import { createSwipeCard } from 'solidjs-swipe-card';
-const { element, ref, apiRef } = createSwipeCard(props);
+The enum that defines a direction defined as follows:
+
+```ts
+enum SwipeDirection {
+    RIGHT = 'right',
+    LEFT = 'left',
+    UP = 'up',
+    DOWN = 'down'
+}
 ```
 
-This primitive returns 3 objects:
+### SwipeCardRef
 
-### `element`
+The type that defines the methods available to interact with the element.
 
-The rendered solid-js component, ready for use.
+#### `snapBack()`
 
-### `ref`
+-   Returns `Promise<void>`
 
-The ref that attaches directly to the component.
-
-### `apiRef`
-
-`apiRef` exposes utility methods to control the behaviour of the card.
-
-Currently, the available methods are:
-
-#### `bringBack()`
-
--   Returns `void`
-
-It will reset to the original position the card if it has been swiped.
-
-## SwipeCard
-
-Under the hood, SwipeCard uses `createSwipeCard`, passing its props and returning the element.
-
-```jsx
-import { SwipeCard } from 'solidjs-swipe-card';
-let ref;
-let apiRef;
-//...
-<SwipeCard class="..." ref={ref} apiRef={apiRef}>
-    <div>I'm a Swipe Card!</div>
-</SwipeCard>;
-//...
-```
+It will reset to the original position the card if it has been swiped. Since it is async, it can be awaited if needed.
 
 ## Contributing
 
