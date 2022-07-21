@@ -32,7 +32,7 @@ const App = () => {
 
 ## Props
 
-Both `createSwipeCard` and `SwipeCard` use the same prop structure, defined in [`SwipeCardProps`](#swipecardprops)
+Both [`createSwipeCard`](#createswipecard) and [`SwipeCard`](#swipecard) use the same prop structure, defined in [`SwipeCardProps`](#swipecardprops).
 
 ## createSwipeCard
 
@@ -123,7 +123,7 @@ Keep it between -0.5 and 0.5 to avoid the card flinging on the other side of the
 -   type: `number`
 -   default: 300
 
-The duration of the animation (in ms) triggered by [`bringBack`](#bringback).
+The duration of the animation (in ms) triggered by [`snapBack`](#snapback).
 
 ### `onSwipe`
 
@@ -132,7 +132,6 @@ The duration of the animation (in ms) triggered by [`bringBack`](#bringback).
 -   default: `() => {}`
 
 The callback to invoke after the card has registered a swipe (before it has finished animating). It will also return a enum describing the direction of the swipe (see [`SwipeDirection`](#swipedirection)).
-Props
 
 ### `apiRef`
 
