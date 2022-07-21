@@ -19,6 +19,7 @@ export type SwipeCardProps = {
     bouncePower?: number;
     snapBackDuration?: number;
     onSwipe?: (direction: SwipeDirection) => void;
+    onSnapBack?: () => void;
     // TODO: refactor so the type won't be needed
     apiRef?: SwipeCardRef;
     ref?: any;
