@@ -131,7 +131,15 @@ The duration of the animation (in ms) triggered by [`snapBack`](#snapback).
 -   type: `(direction: SwipeDirection) => void`
 -   default: `() => {}`
 
-The callback to invoke after the card has registered a swipe (before it has finished animating). It will also return a enum describing the direction of the swipe (see [`SwipeDirection`](#swipedirection)).
+The callback to invoke after the card has registered a swipe (before it has finished animating). It will also provide a enum describing the direction of the swipe (see [`SwipeDirection`](#swipedirection)).
+
+### `onSnapBack`
+
+-   optional
+-   type: `() => void`
+-   default: `() => {}`
+
+The callback to invoke after [`snapBack`](#snapback) has been invoked. It will execute after the card has returned to its original position.
 
 ### `apiRef`
 

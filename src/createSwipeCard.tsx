@@ -47,9 +47,15 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
                 transition: `ease-out ${props.snapBackDuration / 1000}s`
             });
 
-            await new Promise(() => setTimeout(() => setStyle({ transform: 'none' }), props.snapBackDuration + 25));
+            await new Promise<void>(resolve =>
+                setTimeout(() => {
+                    setStyle({ transform: 'none' });
+                    resolve();
+                }, props.snapBackDuration + 25)
+            );
 
             speed = { x: 0, y: 0 };
+            props.onSnapBack();
         }
     };
 
