@@ -1,9 +1,9 @@
 import { ParentComponent, ParentProps } from 'solid-js';
-import { SwipeCardProps } from './types';
-import createSwipeCard from './createSwipeCard';
+import { _SwipeCardProps } from './types';
+import _createSwipeCard from './createSwipeCard';
 
-export const SwipeCard: ParentComponent<SwipeCardProps> = (initialProps: ParentProps<SwipeCardProps>) => {
-    const { element } = createSwipeCard(initialProps);
+export const _SwipeCard: ParentComponent<_SwipeCardProps> = (initialProps: ParentProps<_SwipeCardProps>) => {
+    const { element } = _createSwipeCard(initialProps);
 
     return element;
 };

@@ -1,15 +1,15 @@
-export enum SwipeDirection {
+export enum _SwipeDirection {
     RIGHT = 'right',
     LEFT = 'left',
     UP = 'up',
     DOWN = 'down'
 }
 
-export type SwipeCardRef = {
+export type _SwipeCardRef = {
     snapBack?: () => Promise<void> | void;
 };
 
-export type SwipeCardProps = {
+export type _SwipeCardProps = {
     // TODO: add style
     // TODO: add id
     class?: string;
@@ -18,20 +18,20 @@ export type SwipeCardProps = {
     maxRotation?: number;
     bouncePower?: number;
     snapBackDuration?: number;
-    onSwipe?: (direction: SwipeDirection) => void;
+    onSwipe?: (direction: _SwipeDirection) => void;
     onSnapBack?: () => void;
     // TODO: refactor so the type won't be needed
-    apiRef?: SwipeCardRef;
+    apiRef?: _SwipeCardRef;
     ref?: any;
 };
 
-export type Coordinate = {
+export type _Coordinate = {
     x: number;
     y: number;
 };
 
-export type Speed = Coordinate;
+export type _Speed = _Coordinate;
 
-export type TemporalCoordinate = Coordinate & {
+export type _TemporalCoordinate = _Coordinate & {
     timestamp: number;
 };

@@ -1,26 +1,26 @@
 import { createSignal, JSX, mergeProps, ParentProps } from 'solid-js';
 import { calcDirection, calcSpeed, mouseCoordinates, PropsDefault, pythagoras, touchCoordinates } from './helpers';
-import { Coordinate, Speed, SwipeCardProps, SwipeCardRef, TemporalCoordinate } from './types';
+import { _Coordinate, _Speed, _SwipeCardProps, _SwipeCardRef, _TemporalCoordinate } from './types';
 
-const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
+const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
     const props = mergeProps(PropsDefault, initialProps);
-    const apiRef: SwipeCardRef = {};
+    const apiRef: _SwipeCardRef = {};
 
     const [style, setStyle] = createSignal<JSX.CSSProperties>({});
 
     let isDragging: boolean = false;
     let isReleased: boolean = false;
     let rotation: number = 0;
-    let speed: Speed = { x: 0, y: 0 };
-    let lastPosition: TemporalCoordinate = {
+    let speed: _Speed = { x: 0, y: 0 };
+    let lastPosition: _TemporalCoordinate = {
         x: 0,
         y: 0,
         timestamp: new Date().getTime()
     };
-    let offset: Coordinate = { x: 0, y: 0 };
+    let offset: _Coordinate = { x: 0, y: 0 };
 
-    const handleMove = (coords: Coordinate) => {
-        const finalPosition: TemporalCoordinate = {
+    const handleMove = (coords: _Coordinate) => {
+        const finalPosition: _TemporalCoordinate = {
             x: coords.x - offset.x,
             y: coords.y - offset.y,
             timestamp: new Date().getTime()
@@ -68,7 +68,7 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
             const diagonal = pythagoras({ x: document.body.clientWidth, y: document.body.clientHeight });
             const multiplier = diagonal / velocity;
 
-            const finalPosition: Coordinate = {
+            const finalPosition: _Coordinate = {
                 x: lastPosition.x + speed.x * multiplier,
                 y: lastPosition.y + -speed.y * multiplier
             };
@@ -149,4 +149,4 @@ const createSwipeCard = (initialProps: ParentProps<SwipeCardProps>) => {
     return { element, ref: props.ref, apiRef };
 };
 
-export default createSwipeCard;
+export default _createSwipeCard;
