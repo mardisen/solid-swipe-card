@@ -7,7 +7,8 @@ export const PropsDefault: _SwipeCardProps = {
     maxRotation: 90,
     snapBackDuration: 300,
     bouncePower: 0.1,
-    onSwipe: () => {}
+    onSwipe: () => {},
+    onSnapBack: () => {}
 };
 
 export const calcSpeed = (oldCoords: _TemporalCoordinate, newCoords: _TemporalCoordinate): _Speed => {
