@@ -1,3 +1,5 @@
+import { JSX } from 'solid-js/jsx-runtime';
+
 export enum _SwipeDirection {
     RIGHT = 'right',
     LEFT = 'left',
@@ -9,10 +11,8 @@ export type _SwipeCardRef = {
     snapBack?: () => Promise<void> | void;
 };
 
-export type _SwipeCardProps = {
-    // TODO: add style
-    // TODO: add id
-    class?: string;
+export type _SwipeCardProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'style'> & {
+    style?: JSX.CSSProperties;
     threshold?: number;
     rotationMultiplier?: number;
     maxRotation?: number;
@@ -22,7 +22,6 @@ export type _SwipeCardProps = {
     onSnapBack?: () => void;
     // TODO: refactor so the type won't be needed
     apiRef?: _SwipeCardRef;
-    ref?: any;
 };
 
 export type _Coordinate = {
