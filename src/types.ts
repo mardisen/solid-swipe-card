@@ -11,8 +11,8 @@ export type _SwipeCardRef = {
     snapBack?: () => Promise<void> | void;
 };
 
-export type _SwipeCardProps = JSX.HTMLAttributes<HTMLDivElement> & {
-    additionalStyle?: JSX.CSSProperties;
+export type _SwipeCardProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'style'> & {
+    style?: JSX.CSSProperties;
     threshold?: number;
     rotationMultiplier?: number;
     maxRotation?: number;

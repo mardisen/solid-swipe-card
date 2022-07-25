@@ -76,12 +76,12 @@ let apiRef: SwipeCardRef;
 
 The type that defines what props [`SwipeCard`](#swipecard) and [`createSwipeCard`](#createswipecard) use. It inherits from `JSX.HTMLAttributes<HTMLDivElement>`, the standard props for a normal `<div>` element and adds the following properties.
 
-### `additionalStyle`
+### `style`
 
 -   optional
 -   type: `JSX.CSSProperties`
 
-Additional style to assign to the component. Currently, styles as a `string` is not supported due to how this library handles the movement of the card.
+Additional style to assign to the component. Currently, style as a `string` is not supported due to how this library handles the movement of the card.
 
 ### `threshold`
 

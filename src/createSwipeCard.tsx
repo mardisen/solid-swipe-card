@@ -122,7 +122,7 @@ const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
             {...props}
             ref={props.ref}
             class={`${!isDragging && 'transition-all'} ` + props.class}
-            style={{ ...props.additionalStyle, ...style() }}
+            style={{ ...props.style, ...style() }}
             onMouseMove={onMouseMove}
             onTouchMove={onTouchMove}
             onMouseDown={onMouseDown}
