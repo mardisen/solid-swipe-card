@@ -74,14 +74,14 @@ let apiRef: SwipeCardRef;
 
 ### SwipeCardProps
 
-The type that defines what props [`SwipeCard`](#swipecard) and [`createSwipeCard`](#createswipecard) use.
+The type that defines what props [`SwipeCard`](#swipecard) and [`createSwipeCard`](#createswipecard) use. It inherits from `JSX.HTMLAttributes<HTMLDivElement>`, the standard props for a normal `<div>` element and adds the following properties.
 
-### `class`
+### `additionalStyle`
 
 -   optional
--   type: `string`
+-   type: `JSX.CSSProperties`
 
-Additional CSS class(es) to assign to the component.
+Additional style to assign to the component. Currently, styles as a `string` is not supported due to how this library handles the movement of the card.
 
 ### `threshold`
 
@@ -149,13 +149,6 @@ The callback to invoke after [`snapBack`](#snapback) has been invoked. It will e
 The reference to access the methods of the card. See [`SwipeCardRef`](#swipecardref) for the available methods.
 
 > NOTE: Currently, to pass it in typescript, you'd need to declare the apiRef as follows: `const swipeCardRef: SwipeCardRef = {};`
-
-### `ref`
-
--   optional
--   type: `any`
-
-The ref variable that will be forwarded directly to the card component.
 
 ### SwipeDirection
 
