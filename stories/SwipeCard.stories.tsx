@@ -1,13 +1,15 @@
 import { SwipeCard } from '../src';
+import './index.css';
 
 export default {
-    title: 'SwipeCard/Default',
+    title: 'SwipeCard/SwipeCard',
     component: SwipeCard
 };
 
 const Template = args => <SwipeCard {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-    class: 'z-10 relative h-24 w-24 justify-center m-auto flex items-center bg-slate-400 rounded'
+export const Simple = Template.bind({});
+Simple.args = {
+    class: 'z-10 relative h-24 w-24 justify-center m-auto flex items-center bg-slate-400 rounded',
+    children: 'Swipe me!'
 };

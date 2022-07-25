@@ -29,11 +29,11 @@
         "node": ">=10"
     },
     "scripts": {
-        "start": "tsdx watch",
-        "build": "tsdx build",
+        "start": "tsdx watch --tsconfig tsconfig.build.json",
+        "build": "tsdx build --tsconfig tsconfig.build.json",
         "test": "jest",
-        "lint": "tsdx lint",
-        "prepare": "tsdx build",
+        "lint": "tsdx lint --tsconfig tsconfig.build.json",
+        "prepare": "tsdx build --tsconfig tsconfig.build.json",
         "size": "size-limit",
         "postinstall": "husky install",
         "prepack": "pinst --disable",
@@ -52,16 +52,21 @@
         "@storybook/addon-essentials": "^6.5.9",
         "@storybook/addon-interactions": "^6.5.9",
         "@storybook/addon-links": "^6.5.9",
+        "@storybook/addon-postcss": "2.0.0",
         "@storybook/builder-webpack4": "^6.5.9",
         "@storybook/html": "^6.5.9",
         "@storybook/manager-webpack4": "^6.5.9",
+        "@storybook/node-logger": "^6.5.9",
         "@storybook/testing-library": "^0.0.13",
+        "autoprefixer": "^10.4.7",
         "babel-loader": "^8.2.5",
         "babel-preset-solid": "^1.4.6",
         "husky": "^8.0.1",
         "jest": "^28.1.3",
         "pinst": "^3.0.0",
+        "postcss": "^8.4.14",
         "size-limit": "^7.0.8",
+        "tailwindcss": "^3.1.6",
         "ts-jest": "^28.0.6",
         "tsdx": "^0.14.1",
         "tslib": "^2.4.0",
@@ -73,6 +78,7 @@
     "resolutions": {
         "**/typescript": "^4.1.0",
         "**/ts-jest": "^28.0.6",
-        "**/jest": "^28.1.3"
+        "**/jest": "^28.1.3",
+        "**/postcss": "^8.0.0"
     }
 }
