@@ -86,7 +86,7 @@ Additional style to assign to the component. Currently, style as a `string` is n
 ### `threshold`
 
 -   optional
--   type:`number`
+-   type: `number`
 -   default: `300`
 
 The threshold for considering wether or not a card is swiped. It is based on the speed of which the component moves (px/s). A lower number will make it easier to register a swipe, a higher one will make it harder.
@@ -176,6 +176,8 @@ It will reset to the original position the card if it has been swiped. Since it 
 ## Contributing
 
 TODO
+
+## Storybook
 
 ## Additional Notes
 
