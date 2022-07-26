@@ -146,9 +146,15 @@ The callback to invoke after [`snapBack`](#snapback) has been invoked. It will e
 -   optional
 -   type: [`SwipeCardRef`](#swipecardref)
 
-The reference to access the methods of the card. See [`SwipeCardRef`](#swipecardref) for the available methods.
+The reference to access the methods of the card. See [`SwipeCardRef`](#swipecardref) for the available methods. Currently, it won't assign the methods if it is `null` or `undefined`.
 
-> NOTE: Currently, to pass it in typescript, you'd need to declare the apiRef as follows: `const swipeCardRef: SwipeCardRef = {};`
+> NOTE: Currently, to pass it in typescript, you'd need to declare the apiRef as follows:
+
+```ts
+const apiRef: SwipeCardRef = {};
+// or
+const apiRef: any = {};
+```
 
 ### SwipeDirection
 
@@ -178,6 +184,8 @@ It will reset to the original position the card if it has been swiped. Since it 
 TODO
 
 ## Storybook
+
+TODO
 
 ## Additional Notes
 
