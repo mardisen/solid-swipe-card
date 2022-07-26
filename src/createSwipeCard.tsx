@@ -1,6 +1,7 @@
 import { createSignal, JSX, mergeProps, ParentProps } from 'solid-js';
 import { calcDirection, calcSpeed, mouseCoordinates, PropsDefault, pythagoras, touchCoordinates } from './helpers';
 import { _Coordinate, _Speed, _SwipeCardProps, _SwipeCardRef, _TemporalCoordinate } from './types';
+import './index.css';
 
 const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
     const props = mergeProps(PropsDefault, initialProps);
@@ -121,7 +122,7 @@ const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
         <div
             {...props}
             ref={props.ref}
-            class={`${!isDragging && 'transition-all'} ` + props.class}
+            class={`${!isDragging && 'custom-transition-all'} ` + props.class}
             style={{ ...props.style, ...style() }}
             onMouseMove={onMouseMove}
             onTouchMove={onTouchMove}
