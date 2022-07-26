@@ -1,7 +1,7 @@
 import { _SwipeDirection } from './types';
 import { _SwipeCardProps, _Speed, _Coordinate, _TemporalCoordinate } from './types';
 
-export const PropsDefault: _SwipeCardProps = {
+export const _PropsDefault: _SwipeCardProps = {
     threshold: 300,
     rotationMultiplier: 7.5,
     maxRotation: 90,
