@@ -1,7 +1,6 @@
 import { createSignal, JSX, mergeProps, ParentProps } from 'solid-js';
 import { calcDirection, calcSpeed, mouseCoordinates, _PropsDefault, pythagoras, touchCoordinates } from './helpers';
 import { _Coordinate, _Speed, _SwipeCardProps, _SwipeCardRef, _TemporalCoordinate } from './types';
-import './index.css';
 
 const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
     const props = mergeProps(_PropsDefault, initialProps);
@@ -50,7 +49,12 @@ const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
 
             await new Promise<void>(resolve =>
                 setTimeout(() => {
-                    setStyle({ transform: 'none' });
+                    setStyle({
+                        transform: 'none',
+                        'transition-property': 'all',
+                        'transition-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
+                        'transition-duration': props.snapBackDuration / 2 + 'ms'
+                    });
                     resolve();
                 }, props.snapBackDuration + 25)
             );
@@ -121,7 +125,6 @@ const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
     const element = (
         <div
             {...props}
-            class={`${!isDragging && 'custom-transition-all'} ` + props.class}
             style={{ ...props.style, ...style() }}
             onMouseMove={onMouseMove}
             onTouchMove={onTouchMove}
@@ -136,7 +139,6 @@ const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
     );
 
     // Ref setup
-
     const oldCallback = props.apiRef.snapBack;
 
     props.apiRef.snapBack = async () => {
