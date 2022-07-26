@@ -1,14 +1,15 @@
 import { _SwipeDirection } from './types';
 import { _SwipeCardProps, _Speed, _Coordinate, _TemporalCoordinate } from './types';
 
-export const PropsDefault: _SwipeCardProps = {
+export const _PropsDefault: _SwipeCardProps = {
     threshold: 300,
     rotationMultiplier: 7.5,
     maxRotation: 90,
     snapBackDuration: 300,
     bouncePower: 0.1,
     onSwipe: () => {},
-    onSnapBack: () => {}
+    onSnapBack: () => {},
+    apiRef: {}
 };
 
 export const calcSpeed = (oldCoords: _TemporalCoordinate, newCoords: _TemporalCoordinate): _Speed => {

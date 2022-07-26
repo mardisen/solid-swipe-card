@@ -1,9 +1,9 @@
 import { createSignal, JSX, mergeProps, ParentProps } from 'solid-js';
-import { calcDirection, calcSpeed, mouseCoordinates, PropsDefault, pythagoras, touchCoordinates } from './helpers';
+import { calcDirection, calcSpeed, mouseCoordinates, _PropsDefault, pythagoras, touchCoordinates } from './helpers';
 import { _Coordinate, _Speed, _SwipeCardProps, _SwipeCardRef, _TemporalCoordinate } from './types';
 
 const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
-    const props = mergeProps(PropsDefault, initialProps);
+    const props = mergeProps(_PropsDefault, initialProps);
     const apiRef: _SwipeCardRef = {};
 
     const [style, setStyle] = createSignal<JSX.CSSProperties>({});
@@ -49,7 +49,12 @@ const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
 
             await new Promise<void>(resolve =>
                 setTimeout(() => {
-                    setStyle({ transform: 'none' });
+                    setStyle({
+                        transform: 'none',
+                        'transition-property': 'all',
+                        'transition-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
+                        'transition-duration': props.snapBackDuration / 2 + 'ms'
+                    });
                     resolve();
                 }, props.snapBackDuration + 25)
             );
@@ -120,8 +125,6 @@ const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
     const element = (
         <div
             {...props}
-            ref={props.ref}
-            class={`${!isDragging && 'transition-all'} ` + props.class}
             style={{ ...props.style, ...style() }}
             onMouseMove={onMouseMove}
             onTouchMove={onTouchMove}
@@ -136,16 +139,12 @@ const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
     );
 
     // Ref setup
-    if (props.apiRef) {
-        const oldCallback = props.apiRef.snapBack;
+    const oldCallback = props.apiRef.snapBack;
 
-        apiRef.snapBack = async () => {
-            await snapBack();
-            if (oldCallback) await oldCallback();
-        };
-    } else apiRef.snapBack = snapBack;
-
-    Object.assign(props.apiRef, apiRef);
+    props.apiRef.snapBack = async () => {
+        await snapBack();
+        if (oldCallback) await oldCallback();
+    };
 
     return { element, ref: props.ref, apiRef };
 };

@@ -20,8 +20,8 @@ export type _SwipeCardProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'style'> 
     snapBackDuration?: number;
     onSwipe?: (direction: _SwipeDirection) => void;
     onSnapBack?: () => void;
-    // TODO: refactor so the type won't be needed
-    apiRef?: _SwipeCardRef;
+    // TODO: find a way to pass it as nullable
+    apiRef?: NonNullable<_SwipeCardRef & any>;
 };
 
 export type _Coordinate = {

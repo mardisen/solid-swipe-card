@@ -37,7 +37,9 @@
         "size": "size-limit",
         "postinstall": "husky install",
         "prepack": "pinst --disable",
-        "postpack": "pinst --enable"
+        "postpack": "pinst --enable",
+        "storybook": "npm --prefix stories run storybook -p 6006",
+        "build-storybook": "npm --prefix stories run build-storybook"
     },
     "peerDependencies": {
         "solid-js": ">=1.0.0<2"

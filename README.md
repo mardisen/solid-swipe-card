@@ -86,7 +86,7 @@ Additional style to assign to the component. Currently, style as a `string` is n
 ### `threshold`
 
 -   optional
--   type:`number`
+-   type: `number`
 -   default: `300`
 
 The threshold for considering wether or not a card is swiped. It is based on the speed of which the component moves (px/s). A lower number will make it easier to register a swipe, a higher one will make it harder.
@@ -124,6 +124,7 @@ Keep it between -0.5 and 0.5 to avoid the card flinging on the other side of the
 -   default: 300
 
 The duration of the animation (in ms) triggered by [`snapBack`](#snapback).
+It will animate the snapback for its full duration, then when bouncing back to the original position, it will animate for half of its duration after a delay of 25ms.
 
 ### `onSwipe`
 
@@ -146,9 +147,15 @@ The callback to invoke after [`snapBack`](#snapback) has been invoked. It will e
 -   optional
 -   type: [`SwipeCardRef`](#swipecardref)
 
-The reference to access the methods of the card. See [`SwipeCardRef`](#swipecardref) for the available methods.
+The reference to access the methods of the card. See [`SwipeCardRef`](#swipecardref) for the available methods. Currently, it won't assign the methods if it is `null` or `undefined`.
 
-> NOTE: Currently, to pass it in typescript, you'd need to declare the apiRef as follows: `const swipeCardRef: SwipeCardRef = {};`
+> NOTE: Currently, to pass it in typescript, you'd need to declare the apiRef as follows:
+
+```ts
+const apiRef: SwipeCardRef = {};
+// or
+const apiRef: any = {};
+```
 
 ### SwipeDirection
 
@@ -174,6 +181,10 @@ The type that defines the methods available to interact with the element.
 It will reset to the original position the card if it has been swiped. Since it is async, it can be awaited if needed.
 
 ## Contributing
+
+TODO
+
+## Storybook
 
 TODO
 
