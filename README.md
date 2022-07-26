@@ -124,6 +124,7 @@ Keep it between -0.5 and 0.5 to avoid the card flinging on the other side of the
 -   default: 300
 
 The duration of the animation (in ms) triggered by [`snapBack`](#snapback).
+It will animate the snapback for its full duration, then when bouncing back to the original position, it will animate for half of its duration after a delay of 25ms.
 
 ### `onSwipe`
 
