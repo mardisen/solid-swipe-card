@@ -12,7 +12,7 @@ export const _PropsDefault: _SwipeCardProps = {
     apiRef: {}
 };
 
-export const calcSpeed = (oldCoords: _TemporalCoordinate, newCoords: _TemporalCoordinate): _Speed => {
+export const _calcSpeed = (oldCoords: _TemporalCoordinate, newCoords: _TemporalCoordinate): _Speed => {
     const deltaX = newCoords.x - oldCoords.x;
     const deltaY = oldCoords.y - newCoords.y;
     const deltaT = (newCoords.timestamp - oldCoords.timestamp) / 1000;
@@ -23,7 +23,7 @@ export const calcSpeed = (oldCoords: _TemporalCoordinate, newCoords: _TemporalCo
     return { x, y };
 };
 
-export const calcDirection = (speed: _Speed): _SwipeDirection => {
+export const _calcDirection = (speed: _Speed): _SwipeDirection => {
     if (Math.abs(speed.x) > Math.abs(speed.y)) {
         if (speed.x >= 0) return _SwipeDirection.RIGHT;
         else return _SwipeDirection.LEFT;
@@ -33,15 +33,15 @@ export const calcDirection = (speed: _Speed): _SwipeDirection => {
     }
 };
 
-export const pythagoras = (coords: _Coordinate): number => {
+export const _pythagoras = (coords: _Coordinate): number => {
     return Math.sqrt(Math.pow(coords.x, 2) + Math.pow(coords.y, 2));
 };
 
-export const mouseCoordinates = (event: MouseEvent): _Coordinate => ({
+export const _mouseCoordinates = (event: MouseEvent): _Coordinate => ({
     x: event.clientX,
     y: event.clientY
 });
-export const touchCoordinates = (event: TouchEvent): _Coordinate => ({
+export const _touchCoordinates = (event: TouchEvent): _Coordinate => ({
     x: event.touches[0].clientX,
     y: event.touches[0].clientY
 });

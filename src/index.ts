@@ -1,4 +1,4 @@
-import _createSwipeCard from './createSwipeCard';
+import { _createSwipeCard } from './createSwipeCard';
 import { _SwipeCard } from './SwipeCard';
 import { _SwipeCardProps, _SwipeCardRef, _SwipeDirection } from './types';
 
