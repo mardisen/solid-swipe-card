@@ -38,8 +38,8 @@
         "postinstall": "husky install",
         "prepack": "pinst --disable",
         "postpack": "pinst --enable",
-        "storybook": "npm --prefix stories run storybook -p 6006",
-        "build-storybook": "npm --prefix stories run build-storybook"
+        "storybook": "cd stories && yarn install && yarn storybook",
+        "build-storybook": "cd stories && yarn install && yarn build-storybook"
     },
     "peerDependencies": {
         "solid-js": ">=1.0.0<2"
