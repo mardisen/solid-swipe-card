@@ -1,8 +1,15 @@
 import { createSignal, JSX, mergeProps, ParentProps } from 'solid-js';
-import { calcDirection, calcSpeed, mouseCoordinates, _PropsDefault, pythagoras, touchCoordinates } from './helpers';
+import {
+    _calcDirection,
+    _calcSpeed,
+    _mouseCoordinates,
+    _PropsDefault,
+    _pythagoras,
+    _touchCoordinates
+} from './helpers';
 import { _Coordinate, _Speed, _SwipeCardProps, _SwipeCardRef, _TemporalCoordinate } from './types';
 
-const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
+export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
     const props = mergeProps(_PropsDefault, initialProps);
     const apiRef: _SwipeCardRef = {};
 
@@ -26,7 +33,7 @@ const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
             timestamp: new Date().getTime()
         };
 
-        speed = calcSpeed(lastPosition, finalPosition);
+        speed = _calcSpeed(lastPosition, finalPosition);
         rotation = isDragging ? (speed.x / 1000) * props.rotationMultiplier : 0;
 
         setStyle({
@@ -65,12 +72,12 @@ const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
     };
 
     const release = () => {
-        const velocity = pythagoras(speed);
+        const velocity = _pythagoras(speed);
         isDragging = false;
         if (velocity < props.threshold) {
             handleMove(offset);
         } else {
-            const diagonal = pythagoras({ x: document.body.clientWidth, y: document.body.clientHeight });
+            const diagonal = _pythagoras({ x: document.body.clientWidth, y: document.body.clientHeight });
             const multiplier = diagonal / velocity;
 
             const finalPosition: _Coordinate = {
@@ -89,30 +96,30 @@ const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
             lastPosition = { ...lastPosition, ...finalPosition };
             isReleased = true;
 
-            props.onSwipe(calcDirection(speed));
+            props.onSwipe(_calcDirection(speed));
         }
     };
 
     const onMouseDown: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = event => {
         event.preventDefault();
         isDragging = true;
-        offset = mouseCoordinates(event);
+        offset = _mouseCoordinates(event);
     };
 
     const onTouchStart: JSX.EventHandlerUnion<HTMLDivElement, TouchEvent> = event => {
         event.preventDefault();
         isDragging = true;
-        offset = touchCoordinates(event);
+        offset = _touchCoordinates(event);
     };
 
     const onMouseMove: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = event => {
         event.preventDefault();
-        if (isDragging) handleMove(mouseCoordinates(event));
+        if (isDragging) handleMove(_mouseCoordinates(event));
     };
 
     const onTouchMove: JSX.EventHandlerUnion<HTMLDivElement, TouchEvent> = event => {
         event.preventDefault();
-        if (isDragging) handleMove(touchCoordinates(event));
+        if (isDragging) handleMove(_touchCoordinates(event));
     };
 
     const onDragEnd: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent | TouchEvent> = event => {
@@ -148,5 +155,3 @@ const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
 
     return { element, ref: props.ref, apiRef };
 };
-
-export default _createSwipeCard;
