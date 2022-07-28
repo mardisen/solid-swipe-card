@@ -208,7 +208,7 @@ It will install the subproject dependencies and start Storybook.
 
 > NOTE: Currently, this method requires `yarn`. If you don't or can't install it, please follow the subproject [README](/stories/README.md).
 
-Alternatively, a Storybook deployed instance can be found [here](https://solidjs-swipe-card-mardisen.vercel.app/?path=/story/swipecard-swipecard--snap-back).
+Alternatively, a Storybook deployed instance can be found [here](https://solidjs-swipe-card-mardisen.vercel.app/).
 
 ## Additional Notes
 
