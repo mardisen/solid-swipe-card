@@ -95,7 +95,7 @@ The threshold for considering wether or not a card is swiped. It is based on the
 
 -   optional
 -   type: `number`
--   default: 7.5
+-   default: `7.5`
 
 The coefficient of the rotation. A lower number will make it rotate less, a higher one more.
 
@@ -103,7 +103,7 @@ The coefficient of the rotation. A lower number will make it rotate less, a high
 
 -   optional
 -   type: `number`
--   default: 90
+-   default: `90`
 
 The maximum rotation degrees (ranging from `-maxRotation/2` to `+maxRotation/2`) to add when releasing a card.
 
@@ -111,17 +111,17 @@ The maximum rotation degrees (ranging from `-maxRotation/2` to `+maxRotation/2`)
 
 -   optional
 -   type: `number`
--   default: 0.1
+-   default: `0.1`
 
 The bounce power of which the card will sway back before returning to its original position when [`bringBack`](#bringback) is called.
 
-Keep it between -0.5 and 0.5 to avoid the card flinging on the other side of the screen.
+Keep it between 0 and 0.5 to avoid the card flinging on the other side of the screen.
 
 ### `snapBackDuration`
 
 -   optional
 -   type: `number`
--   default: 300
+-   default: `300`
 
 The duration of the animation (in ms) triggered by [`snapBack`](#snapback).
 It will animate the snapback for its full duration, then when bouncing back to the original position, it will animate for half of its duration after a delay of 25ms.
