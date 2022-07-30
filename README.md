@@ -1,4 +1,4 @@
-# SolidJS Swipe Card
+# Solid Swipe Card
 
 A SolidJS swipeable card component (tinder-like) heavily inspired by [`react-tinder-card`](https://github.com/3DJakob/react-tinder-card).
 
@@ -9,15 +9,15 @@ Bootstrapped using [`tsdx`](https://github.com/jaredpalmer/tsdx).
 To install, run
 
 ```bash
-npm install solidjs-swipe-card
+npm install solid-swipe-card
 # or
-yarn add solidjs-swipe-card
+yarn add solid-swipe-card
 ```
 
 ## Quick Start
 
 ```jsx
-import { SwipeCard } from 'solidjs-swipe-card';
+import { SwipeCard } from 'solid-swipe-card';
 
 const App = () => {
     return (
@@ -37,7 +37,7 @@ Both [`createSwipeCard`](#createswipecard) and [`SwipeCard`](#swipecard) use the
 ## createSwipeCard
 
 ```js
-import { createSwipeCard } from 'solidjs-swipe-card';
+import { createSwipeCard } from 'solid-swipe-card';
 const { element, ref, apiRef } = createSwipeCard(props);
 ```
 
@@ -60,7 +60,7 @@ The reference to access the methods of the card. See [`SwipeCardRef`](#swipecard
 Under the hood, SwipeCard uses `createSwipeCard`, passing its props and returning the element.
 
 ```tsx
-import { SwipeCard } from 'solidjs-swipe-card';
+import { SwipeCard } from 'solid-swipe-card';
 let ref;
 let apiRef: SwipeCardRef;
 //...
@@ -208,7 +208,7 @@ It will install the subproject dependencies and start Storybook.
 
 > NOTE: Currently, this method requires `yarn`. If you don't or can't install it, please follow the subproject [README](/stories/README.md).
 
-Alternatively, a Storybook deployed instance can be found [here](https://solidjs-swipe-card-mardisen.vercel.app/).
+Alternatively, a Storybook deployed instance can be found [here](https://solid-swipe-card-mardisen.vercel.app/).
 
 ## Additional Notes
 
