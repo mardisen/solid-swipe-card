@@ -2,8 +2,6 @@
 
 A SolidJS swipeable card component (tinder-like) heavily inspired by [`react-tinder-card`](https://github.com/3DJakob/react-tinder-card).
 
-Bootstrapped using [`tsdx`](https://github.com/jaredpalmer/tsdx).
-
 ## Installing
 
 To install, run
