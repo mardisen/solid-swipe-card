@@ -40,7 +40,8 @@
         "prepack": "pinst --disable",
         "postpack": "pinst --enable",
         "storybook": "yarn build && cd stories && yarn install && yarn storybook",
-        "build-storybook": "yarn build && cd stories && yarn install && yarn build-storybook"
+        "build-storybook": "yarn build && cd stories && yarn install && yarn build-storybook",
+        "changelog": "github_changelog_generator -u mardisen -p solid-swipe-card"
     },
     "peerDependencies": {
         "solid-js": ">=1.0.0<2"
