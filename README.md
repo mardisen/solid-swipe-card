@@ -180,7 +180,7 @@ It will reset to the original position the card if it has been swiped. Since it 
 
 ## Contributing
 
-TODO
+See [CONTRIBUTING]
 
 ## Storybook
 
