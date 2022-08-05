@@ -1,5 +1,9 @@
 # Solid Swipe Card
 
+![NPM Version](https://img.shields.io/npm/v/solid-swipe-card)
+![License](https://img.shields.io/github/license/mardisen/solid-swipe-card)
+![Deploy](https://img.shields.io/github/deployments/mardisen/solid-swipe-card/production?label=deploy)
+
 A SolidJS swipeable card component (tinder-like) heavily inspired by [`react-tinder-card`](https://github.com/3DJakob/react-tinder-card).
 
 ## Installing
