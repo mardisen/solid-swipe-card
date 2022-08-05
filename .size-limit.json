@@ -1,10 +1,6 @@
 [
     {
-        "path": "dist/solidjs-swipe-card.cjs.production.min.js",
-        "limit": "10 KB"
-    },
-    {
-        "path": "dist/solidjs-swipe-card.esm.js",
+        "path": "dist/index.d.ts",
         "limit": "10 KB"
     }
 ]

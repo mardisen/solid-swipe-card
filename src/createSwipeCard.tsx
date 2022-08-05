@@ -15,9 +15,9 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
 
     const [style, setStyle] = createSignal<JSX.CSSProperties>({});
 
-    let isDragging: boolean = false;
-    let isReleased: boolean = false;
-    let rotation: number = 0;
+    let isDragging = false;
+    let isReleased = false;
+    let rotation = 0;
     let speed: _Speed = { x: 0, y: 0 };
     let lastPosition: _TemporalCoordinate = {
         x: 0,
@@ -48,13 +48,14 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
         if (isReleased) {
             isReleased = false;
             setStyle({
-                transform: `translate(${lastPosition.x * -props.bouncePower}px, ${lastPosition.y *
-                    -props.bouncePower}px)
+                transform: `translate(${lastPosition.x * -props.bouncePower}px, ${
+                    lastPosition.y * -props.bouncePower
+                }px)
                 rotate(${rotation * -props.bouncePower}deg)`,
                 transition: `ease-out ${props.snapBackDuration / 1000}s`
             });
 
-            await new Promise<void>(resolve =>
+            await new Promise<void>((resolve) =>
                 setTimeout(() => {
                     setStyle({
                         transform: 'none',
@@ -100,29 +101,29 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
         }
     };
 
-    const onMouseDown: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = event => {
+    const onMouseDown: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = (event) => {
         event.preventDefault();
         isDragging = true;
         offset = _mouseCoordinates(event);
     };
 
-    const onTouchStart: JSX.EventHandlerUnion<HTMLDivElement, TouchEvent> = event => {
+    const onTouchStart: JSX.EventHandlerUnion<HTMLDivElement, TouchEvent> = (event) => {
         event.preventDefault();
         isDragging = true;
         offset = _touchCoordinates(event);
     };
 
-    const onMouseMove: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = event => {
+    const onMouseMove: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = (event) => {
         event.preventDefault();
         if (isDragging) handleMove(_mouseCoordinates(event));
     };
 
-    const onTouchMove: JSX.EventHandlerUnion<HTMLDivElement, TouchEvent> = event => {
+    const onTouchMove: JSX.EventHandlerUnion<HTMLDivElement, TouchEvent> = (event) => {
         event.preventDefault();
         if (isDragging) handleMove(_touchCoordinates(event));
     };
 
-    const onDragEnd: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent | TouchEvent> = event => {
+    const onDragEnd: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent | TouchEvent> = (event) => {
         event.preventDefault();
         if (isDragging) {
             release();

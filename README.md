@@ -1,8 +1,10 @@
 # Solid Swipe Card
 
-A SolidJS swipeable card component (tinder-like) heavily inspired by [`react-tinder-card`](https://github.com/3DJakob/react-tinder-card).
+![NPM Version](https://img.shields.io/npm/v/solid-swipe-card)
+![License](https://img.shields.io/github/license/mardisen/solid-swipe-card)
+![Deploy](https://img.shields.io/github/deployments/mardisen/solid-swipe-card/production?label=deploy)
 
-Bootstrapped using [`tsdx`](https://github.com/jaredpalmer/tsdx).
+A SolidJS swipeable card component (tinder-like) heavily inspired by [`react-tinder-card`](https://github.com/3DJakob/react-tinder-card).
 
 ## Installing
 
@@ -182,7 +184,7 @@ It will reset to the original position the card if it has been swiped. Since it 
 
 ## Contributing
 
-TODO
+See [CONTRIBUTING]
 
 ## Storybook
 
