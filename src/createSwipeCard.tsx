@@ -135,6 +135,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
     const element = (
         <div
             {...divProps}
+            attr:data-testid={props.id}
             style={{ ...props.style, ...style() }}
             onMouseMove={onMouseMove}
             onTouchMove={onTouchMove}
