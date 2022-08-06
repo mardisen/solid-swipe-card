@@ -2,6 +2,7 @@ import { createSignal, JSX, mergeProps, ParentProps } from 'solid-js';
 import {
     _calcDirection,
     _calcSpeed,
+    _extractDivProps,
     _mouseCoordinates,
     _PropsDefault,
     _pythagoras,
@@ -11,6 +12,7 @@ import { _Coordinate, _Speed, _SwipeCardProps, _SwipeCardRef, _TemporalCoordinat
 
 export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
     const props = mergeProps(_PropsDefault, initialProps);
+    const divProps = _extractDivProps(props);
     const apiRef: _SwipeCardRef = {};
 
     const [style, setStyle] = createSignal<JSX.CSSProperties>({});
@@ -132,7 +134,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
 
     const element = (
         <div
-            {...props}
+            {...divProps}
             style={{ ...props.style, ...style() }}
             onMouseMove={onMouseMove}
             onTouchMove={onTouchMove}
