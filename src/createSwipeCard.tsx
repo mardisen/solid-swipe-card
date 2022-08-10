@@ -156,6 +156,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
         await snapBack();
         if (oldCallback) await oldCallback();
     };
+    props.apiRef.isReleased = () => isReleased;
 
     return { element, ref: props.ref, apiRef };
 };

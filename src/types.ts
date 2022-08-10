@@ -9,6 +9,7 @@ export enum _SwipeDirection {
 
 export type _SwipeCardRef = {
     snapBack?: () => Promise<void> | void;
+    isReleased?: () => boolean;
 };
 
 export type _SwipeCardProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'style'> & {
