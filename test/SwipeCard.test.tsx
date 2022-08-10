@@ -18,7 +18,7 @@ describe('SwipeCard', () => {
         fireEvent.mouseMove(element, { clientX: 0, clientY: 0 });
         fireEvent.mouseUp(element);
 
-        expect(apiRef.hasSwiped()).toBeFalsy();
+        expect(apiRef.swiped()).toBeFalsy();
         unmount();
     });
 
@@ -31,7 +31,7 @@ describe('SwipeCard', () => {
         fireEvent.touchMove(element, { touches: [{ clientX: 0, clientY: 0 }] });
         fireEvent.touchEnd(element);
 
-        expect(apiRef.hasSwiped()).toBeFalsy();
+        expect(apiRef.swiped()).toBeFalsy();
         unmount();
     });
 
@@ -44,7 +44,7 @@ describe('SwipeCard', () => {
         fireEvent.mouseMove(element, { clientX: 300, clientY: 0 });
         fireEvent.mouseUp(element);
 
-        expect(apiRef.hasSwiped()).toBeTruthy();
+        expect(apiRef.swiped()).toBeTruthy();
         unmount();
     });
 
@@ -57,7 +57,7 @@ describe('SwipeCard', () => {
         fireEvent.touchMove(element, { touches: [{ clientX: 300, clientY: 0 }] });
         fireEvent.touchEnd(element);
 
-        expect(apiRef.hasSwiped()).toBeTruthy();
+        expect(apiRef.swiped()).toBeTruthy();
         unmount();
     });
 
@@ -69,7 +69,7 @@ describe('SwipeCard', () => {
         fireEvent.mouseMove(element, { clientX: 300, clientY: 0 });
         fireEvent.mouseUp(element);
 
-        expect(apiRef.hasSwiped()).toBeFalsy();
+        expect(apiRef.swiped()).toBeFalsy();
         unmount();
     });
 
@@ -81,7 +81,7 @@ describe('SwipeCard', () => {
         fireEvent.touchMove(element, { touches: [{ clientX: 300, clientY: 0 }] });
         fireEvent.touchEnd(element);
 
-        expect(apiRef.hasSwiped()).toBeFalsy();
+        expect(apiRef.swiped()).toBeFalsy();
         unmount();
     });
 
@@ -94,10 +94,10 @@ describe('SwipeCard', () => {
         fireEvent.mouseMove(element, { clientX: 300, clientY: 0 });
         fireEvent.mouseUp(element);
 
-        expect(apiRef.hasSwiped()).toBeTruthy();
+        expect(apiRef.swiped()).toBeTruthy();
 
         await apiRef.snapBack();
-        expect(apiRef.hasSwiped()).toBeFalsy();
+        expect(apiRef.swiped()).toBeFalsy();
         unmount();
     });
 
@@ -110,10 +110,10 @@ describe('SwipeCard', () => {
         fireEvent.mouseMove(element, { clientX: 0, clientY: 0 });
         fireEvent.mouseUp(element);
 
-        expect(apiRef.hasSwiped()).toBeFalsy();
+        expect(apiRef.swiped()).toBeFalsy();
 
         await apiRef.snapBack();
-        expect(apiRef.hasSwiped()).toBeFalsy();
+        expect(apiRef.swiped()).toBeFalsy();
         unmount();
     });
 
@@ -129,7 +129,7 @@ describe('SwipeCard', () => {
         fireEvent.mouseMove(element, { clientX: 300, clientY: 0 });
         fireEvent.mouseUp(element);
 
-        expect(apiRef.hasSwiped()).toBeTruthy();
+        expect(apiRef.swiped()).toBeTruthy();
         expect(mockCallback).toBeCalled();
         unmount();
     });
@@ -146,10 +146,10 @@ describe('SwipeCard', () => {
         fireEvent.mouseMove(element, { clientX: 300, clientY: 0 });
         fireEvent.mouseUp(element);
 
-        expect(apiRef.hasSwiped()).toBeTruthy();
+        expect(apiRef.swiped()).toBeTruthy();
 
         await apiRef.snapBack();
-        expect(apiRef.hasSwiped()).toBeFalsy();
+        expect(apiRef.swiped()).toBeFalsy();
         expect(mockCallback).toBeCalled();
         unmount();
     });

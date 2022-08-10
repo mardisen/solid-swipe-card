@@ -15,10 +15,10 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
     const divProps = _extractDivProps(props);
     const apiRef: _SwipeCardRef = {};
 
+    const [swiped, setSwiped] = createSignal(false);
     const [style, setStyle] = createSignal<JSX.CSSProperties>({});
 
     let isDragging = false;
-    let hasSwiped = false;
     let rotation = 0;
     let speed: _Speed = { x: 0, y: 0 };
     let lastPosition: _TemporalCoordinate = {
@@ -47,8 +47,8 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
     };
 
     const snapBack = async () => {
-        if (hasSwiped) {
-            hasSwiped = false;
+        if (swiped()) {
+            setSwiped(false);
             setStyle({
                 transform: `translate(${lastPosition.x * -props.bouncePower}px, ${
                     lastPosition.y * -props.bouncePower
@@ -97,7 +97,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
             });
 
             lastPosition = { ...lastPosition, ...finalPosition };
-            hasSwiped = true;
+            setSwiped(true);
 
             props.onSwipe(_calcDirection(speed));
         }
@@ -151,8 +151,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
 
     // Ref setup
     props.apiRef.snapBack = snapBack;
-
-    props.apiRef.hasSwiped = () => hasSwiped;
+    props.apiRef.swiped = swiped;
 
     return { element, ref: props.ref, apiRef };
 };

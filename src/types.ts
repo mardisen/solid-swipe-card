@@ -1,4 +1,5 @@
 import { JSX } from 'solid-js/jsx-runtime';
+import { Accessor } from 'solid-js';
 
 export enum _SwipeDirection {
     RIGHT = 'right',
@@ -9,7 +10,7 @@ export enum _SwipeDirection {
 
 export type _SwipeCardRef = {
     snapBack?: () => Promise<void> | void;
-    hasSwiped?: () => boolean;
+    swiped?: Accessor<boolean>;
 };
 
 export type _SwipeCardProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'style'> & {
