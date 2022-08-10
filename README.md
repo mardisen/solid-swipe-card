@@ -191,7 +191,7 @@ A Accessor that will update when the card has been swiped (or when it is brought
 
 ## Contributing
 
-See [CONTRIBUTING]
+See [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Storybook
 
