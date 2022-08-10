@@ -150,12 +150,8 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
     );
 
     // Ref setup
-    const oldCallback = props.apiRef.snapBack;
+    props.apiRef.snapBack = snapBack;
 
-    props.apiRef.snapBack = async () => {
-        await snapBack();
-        if (oldCallback) await oldCallback();
-    };
     props.apiRef.hasSwiped = () => hasSwiped;
 
     return { element, ref: props.ref, apiRef };
