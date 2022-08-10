@@ -10,7 +10,7 @@ import {
 } from '../src/helpers';
 
 describe('helpers', () => {
-    it('calculate speed', () => {
+    it('calculates speed', () => {
         const oldCoords = { x: 0, y: 0, timestamp: 0 };
 
         const newCoords = { x: 0, y: 100, timestamp: 1000 };
@@ -20,7 +20,7 @@ describe('helpers', () => {
         expect(speed.x).toBe(0);
         expect(speed.y).toBe(100);
     });
-    it('calculate direction', () => {
+    it('calculates direction', () => {
         let speed = { x: 0, y: 100 };
 
         let direction = _calcDirection(speed);
@@ -45,20 +45,20 @@ describe('helpers', () => {
 
         expect(direction).toBe(SwipeDirection.LEFT);
     });
-    it('calculate pythagoras', () => {
+    it('calculates pythagoras', () => {
         const coords = { x: 3, y: 4 };
         const pythagoras = _pythagoras(coords);
 
         expect(pythagoras).toBe(5);
     });
-    it('calculate coordinates from mouse event', () => {
+    it('calculates coordinates from mouse event', () => {
         const mouseEvent = new MouseEvent('mousemove', { clientX: 100, clientY: 100 });
 
         const coords = _mouseCoordinates(mouseEvent);
 
         expect(coords).toEqual({ x: 100, y: 100 });
     });
-    it('calculate coordinates from touch event', () => {
+    it('calculates coordinates from touch event', () => {
         const touchEvent = new TouchEvent('touchmove', {
             touches: [
                 {
@@ -82,7 +82,7 @@ describe('helpers', () => {
 
         expect(coords).toEqual({ x: 100, y: 100 });
     });
-    it('extract standalone div props', () => {
+    it('extracts standalone div props', () => {
         const props: SwipeCardProps = { ..._PropsDefault, id: 'test-id' };
 
         const extractedProps = _extractDivProps(props);
