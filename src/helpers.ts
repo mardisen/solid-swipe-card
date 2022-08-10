@@ -15,7 +15,7 @@ export const _PropsDefault: _SwipeCardProps = {
 
 export const _calcSpeed = (oldCoords: _TemporalCoordinate, newCoords: _TemporalCoordinate): _Speed => {
     const deltaX = newCoords.x - oldCoords.x;
-    const deltaY = oldCoords.y - newCoords.y;
+    const deltaY = newCoords.y - oldCoords.y;
     const deltaT = (newCoords.timestamp - oldCoords.timestamp) / 1000;
 
     const x = deltaX / deltaT;
@@ -42,6 +42,7 @@ export const _mouseCoordinates = (event: MouseEvent): _Coordinate => ({
     x: event.clientX,
     y: event.clientY
 });
+
 export const _touchCoordinates = (event: TouchEvent): _Coordinate => ({
     x: event.touches[0].clientX,
     y: event.touches[0].clientY

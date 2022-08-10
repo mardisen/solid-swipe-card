@@ -85,7 +85,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
 
             const finalPosition: _Coordinate = {
                 x: lastPosition.x + speed.x * multiplier,
-                y: lastPosition.y + -speed.y * multiplier
+                y: lastPosition.y + speed.y * multiplier
             };
 
             const finalRotation = rotation + props.maxRotation * (Math.random() - 0.5);
