@@ -149,7 +149,7 @@ The callback to invoke after [`snapBack`](#snapback) has been invoked. It will e
 -   optional
 -   type: [`SwipeCardRef`](#swipecardref)
 
-The reference to access the methods of the card. See [`SwipeCardRef`](#swipecardref) for the available methods. Currently, it won't assign the methods if it is `null` or `undefined`.
+The reference to access the methods and properties of the card. See [`SwipeCardRef`](#swipecardref) for the available methods. Currently, it won't assign the methods if it is `null` or `undefined`.
 
 > NOTE: Currently, to pass it in typescript, you'd need to declare the apiRef as follows:
 
@@ -174,13 +174,20 @@ enum SwipeDirection {
 
 ### SwipeCardRef
 
-The type that defines the methods available to interact with the element.
+The type that defines the methods and properties available to interact with the element.
 
 #### `snapBack()`
 
--   Returns `Promise<void>`
+-   returns: `Promise<void>`
 
 It will reset to the original position the card if it has been swiped. Since it is async, it can be awaited if needed.
+
+#### `swiped()`
+
+-   type: `Accessor<boolean>`
+-   returns: `boolean`
+
+A Accessor that will update when the card has been swiped (or when it is brought back). It describes wether or not the card has been swiped or not.
 
 ## Contributing
 
