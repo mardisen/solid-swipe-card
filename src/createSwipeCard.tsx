@@ -2,6 +2,7 @@ import { createSignal, JSX, mergeProps, ParentProps } from 'solid-js';
 import {
     _calcDirection,
     _calcSpeed,
+    _extractDivProps,
     _mouseCoordinates,
     _PropsDefault,
     _pythagoras,
@@ -11,12 +12,13 @@ import { _Coordinate, _Speed, _SwipeCardProps, _SwipeCardRef, _TemporalCoordinat
 
 export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
     const props = mergeProps(_PropsDefault, initialProps);
+    const divProps = _extractDivProps(props);
     const apiRef: _SwipeCardRef = {};
 
+    const [swiped, setSwiped] = createSignal(false);
     const [style, setStyle] = createSignal<JSX.CSSProperties>({});
 
     let isDragging = false;
-    let isReleased = false;
     let rotation = 0;
     let speed: _Speed = { x: 0, y: 0 };
     let lastPosition: _TemporalCoordinate = {
@@ -45,8 +47,8 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
     };
 
     const snapBack = async () => {
-        if (isReleased) {
-            isReleased = false;
+        if (swiped()) {
+            setSwiped(false);
             setStyle({
                 transform: `translate(${lastPosition.x * -props.bouncePower}px, ${
                     lastPosition.y * -props.bouncePower
@@ -83,7 +85,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
 
             const finalPosition: _Coordinate = {
                 x: lastPosition.x + speed.x * multiplier,
-                y: lastPosition.y + -speed.y * multiplier
+                y: lastPosition.y + speed.y * multiplier
             };
 
             const finalRotation = rotation + props.maxRotation * (Math.random() - 0.5);
@@ -95,7 +97,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
             });
 
             lastPosition = { ...lastPosition, ...finalPosition };
-            isReleased = true;
+            setSwiped(true);
 
             props.onSwipe(_calcDirection(speed));
         }
@@ -132,7 +134,8 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
 
     const element = (
         <div
-            {...props}
+            {...divProps}
+            attr:data-testid={props.id}
             style={{ ...props.style, ...style() }}
             onMouseMove={onMouseMove}
             onTouchMove={onTouchMove}
@@ -147,12 +150,8 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
     );
 
     // Ref setup
-    const oldCallback = props.apiRef.snapBack;
-
-    props.apiRef.snapBack = async () => {
-        await snapBack();
-        if (oldCallback) await oldCallback();
-    };
+    props.apiRef.snapBack = snapBack;
+    props.apiRef.swiped = swiped;
 
     return { element, ref: props.ref, apiRef };
 };

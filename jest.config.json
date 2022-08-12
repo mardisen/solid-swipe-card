@@ -1,0 +1,9 @@
+{
+    "preset": "solid-jest/preset/browser",
+    "setupFilesAfterEnv": [
+        "<rootDir>/jest-setup.ts"
+    ],
+    "verbose": true,
+    "silent": false,
+    "coverageReporters": ["text"]
+}
