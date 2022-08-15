@@ -1,0 +1,25 @@
+name: Build and Test
+
+on:
+  pull_request:
+    types: [opened, reopened]
+  push:
+    branches: [main]
+  workflow_call:
+
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ 14, 16, 18 ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'yarn'
+      - run: yarn install --immutable --ignore-scripts
+      - run: yarn build
+      - run: yarn test
