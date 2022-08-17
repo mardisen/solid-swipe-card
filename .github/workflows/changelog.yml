@@ -27,4 +27,4 @@ jobs:
         with:
           message: Updated CHANGELOG (Automated)
           add: CHANGELOG.md
-          push: origin HEAD:${{ github.head_ref }}
+          push: origin main
