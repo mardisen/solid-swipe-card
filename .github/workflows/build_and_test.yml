@@ -15,11 +15,16 @@ jobs:
       matrix:
         node: [ 14, 16, 18 ]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Setup NodeJS (yarn)
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          cache: 'yarn'
-      - run: yarn install --immutable --ignore-scripts
-      - run: yarn build
-      - run: yarn test
+          cache: yarn
+      - name: Install required packages
+        run: yarn install --immutable --ignore-scripts
+      - name: Build
+        run: yarn build
+      - name: Test
+        run: yarn test

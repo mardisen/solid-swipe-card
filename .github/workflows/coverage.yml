@@ -9,14 +9,19 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Setup NodeJS (yarn)
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
-      - run: yarn install --immutable --ignore-scripts
-      - run: yarn coverage
-      - uses: codecov/codecov-action@v3
+          cache: yarn
+      - name: Install required packages
+        run: yarn install --immutable --ignore-scripts
+      - name: Coverage
+        run: yarn coverage
+      - name: Send coverage to CodeCov
+        uses: codecov/codecov-action@v3
         with:
           directory: coverage
           fail_ci_if_error: true
