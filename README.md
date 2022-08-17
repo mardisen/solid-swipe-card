@@ -1,19 +1,11 @@
 # Solid Swipe Card
 
-![NPM Version](https://img.shields.io/npm/v/solid-swipe-card)
-![License](https://img.shields.io/github/license/mardisen/solid-swipe-card)
-![Deploy](https://img.shields.io/github/deployments/mardisen/solid-swipe-card/production?label=deploy)
-![Codecov](https://img.shields.io/codecov/c/gh/mardisen/solid-swipe-card)
+[![NPM Version](https://img.shields.io/npm/v/solid-swipe-card)](https://www.npmjs.com/package/solid-swipe-card)
+[![License](https://img.shields.io/github/license/mardisen/solid-swipe-card)](LICENSE)
+[![Deploy](https://img.shields.io/github/deployments/mardisen/solid-swipe-card/production?label=deploy)](https://solidjs-swipe-card-mardisen.vercel.app)
+[![Codecov](https://img.shields.io/codecov/c/gh/mardisen/solid-swipe-card)](https://app.codecov.io/gh/mardisen/solid-swipe-card)
 
 A SolidJS swipeable card component (tinder-like) heavily inspired by [`react-tinder-card`](https://github.com/3DJakob/react-tinder-card).
-
-[GitHub Repo](https://github.com/mardisen/solid-swipe-card)
-
-[NPM Package](https://www.npmjs.com/package/solid-swipe-card)
-
-[Storybook Demo](https://solidjs-swipe-card-mardisen.vercel.app)
-
-[Codecov Report](https://app.codecov.io/gh/mardisen/solid-swipe-card)
 
 ## Installing
 
