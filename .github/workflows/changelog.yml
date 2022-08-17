@@ -8,12 +8,14 @@ jobs:
   changelog:
     runs-on: ubuntu-latest
     steps:
-      - name: "Generate release changelog"
-        uses: heinrichreimer/github-changelog-generator-action@v2.3
+      - uses: ruby/setup-ruby@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          output: CHANGELOG.md
+          ruby-version: 3.0
+          bundler-cache: true
+      - run: gem install github_changelog_generator
+      - run: github_changelog_generator -u mardisen -p solid-swipe-card
       - name: "Commit changelog"
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: EndBug/add-and-commit@v9
         with:
-          commit_message: Updated CHANGELOG (Automated)
+          message: Updated CHANGELOG (Automated)
+          add: CHANGELOG.md
