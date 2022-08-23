@@ -5,7 +5,6 @@ import {
     _extractDivProps,
     _mouseCoordinates,
     _PropsDefault,
-    _pythagoras,
     _touchCoordinates
 } from './helpers';
 import { _Coordinate, _Speed, _SwipeCardProps, _SwipeCardRef, _TemporalCoordinate } from './types';
@@ -75,12 +74,12 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
     };
 
     const release = () => {
-        const velocity = _pythagoras(speed);
+        const velocity = Math.hypot(speed.x, speed.y);
         isDragging = false;
         if (velocity < props.threshold) {
             handleMove(offset);
         } else {
-            const diagonal = _pythagoras({ x: document.body.clientWidth, y: document.body.clientHeight });
+            const diagonal = Math.hypot(document.body.clientWidth, document.body.clientHeight);
             const multiplier = diagonal / velocity;
 
             const finalPosition: _Coordinate = {

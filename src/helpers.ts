@@ -34,10 +34,6 @@ export const _calcDirection = (speed: _Speed): _SwipeDirection => {
     }
 };
 
-export const _pythagoras = (coords: _Coordinate): number => {
-    return Math.sqrt(Math.pow(coords.x, 2) + Math.pow(coords.y, 2));
-};
-
 export const _mouseCoordinates = (event: MouseEvent): _Coordinate => ({
     x: event.clientX,
     y: event.clientY
