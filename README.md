@@ -93,6 +93,14 @@ Additional style to assign to the component. Currently, style as a `string` is n
 
 The threshold for considering wether or not a card is swiped. It is based on the speed of which the component moves (px/s). A lower number will make it easier to register a swipe, a higher one will make it harder.
 
+### `minSpeed`
+
+-   optional
+-   type: `number`
+-   default: `0`
+
+The minimum speed (px/s) at which the card will travel once it is released.
+
 ### `rotationMultiplier`
 
 -   optional
