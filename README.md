@@ -136,6 +136,18 @@ Keep it between 0 and 0.5 to avoid the card flinging on the other side of the sc
 The duration of the animation (in ms) triggered by [`snapBack`](#snapback).
 It will animate the snapback for its full duration, then when bouncing back to the original position, it will animate for half of its duration after a delay of 25ms.
 
+### `smoothDuration`
+
+-   optional
+-   type: `number`
+-   default: `40`
+
+The transition duration (in ms) when moving the card.
+A higher value will make the card delay it's movement when following the mouse.
+A lower number will reduce the smoothing effect, and it won't have any visual effect when it goes below the refresh rate.
+Recommended values are between `150` and `0`
+
+
 ### `onSwipe`
 
 -   optional
