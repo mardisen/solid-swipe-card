@@ -1,4 +1,5 @@
 #!/bin/bash
 
+[ -n "$CI" ] && exit 0
 # TODO: run only when changes include a .ts, .tsx, .js or .jsx file
 npm run lint
