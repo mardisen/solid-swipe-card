@@ -82,10 +82,18 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
             const diagonal = Math.hypot(document.body.clientWidth, document.body.clientHeight);
             const multiplier = diagonal / velocity;
 
-            const finalPosition: _Coordinate = {
-                x: lastPosition.x + speed.x * multiplier,
-                y: lastPosition.y + speed.y * multiplier
-            };
+            const speedRatio: _Speed = { x: speed.x / velocity, y: speed.y / velocity };
+
+            const finalPosition: _Coordinate =
+                velocity >= props.minSpeed
+                    ? {
+                          x: lastPosition.x + speed.x * multiplier,
+                          y: lastPosition.y + speed.y * multiplier
+                      }
+                    : {
+                          x: lastPosition.x + speedRatio.x * props.minSpeed * multiplier,
+                          y: lastPosition.y + speedRatio.y * props.minSpeed * multiplier
+                      };
 
             const finalRotation = rotation + props.maxRotation * (Math.random() - 0.5);
 

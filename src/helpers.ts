@@ -4,6 +4,7 @@ import { _SwipeCardProps, _Speed, _Coordinate, _TemporalCoordinate } from './typ
 export const _PropsDefault: _SwipeCardProps = {
     style: {},
     threshold: 300,
+    minSpeed: 0,
     rotationMultiplier: 7.5,
     maxRotation: 90,
     snapBackDuration: 300,
