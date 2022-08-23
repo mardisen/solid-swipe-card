@@ -50,6 +50,7 @@ Index.args = {
     rotationMultiplier: 7.5,
     maxRotation: 90,
     snapBackDuration: 300,
+    smoothDuration: 40,
     bouncePower: 0.1
 };
 
@@ -78,6 +79,12 @@ NoRotation.args = {
 
 export const FastRelease = SnapBackTemplate.bind({});
 FastRelease.args = {
-    text: 'I\'m speed',
+    text: "I'm speed",
     minSpeed: 3000
+};
+
+export const Choppy = SnapBackTemplate.bind({});
+Choppy.args = {
+    text: "I'm choppy",
+    smoothDuration: 0
 };

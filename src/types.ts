@@ -22,6 +22,7 @@ export type _SwipeCardProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'style'> 
     maxRotation?: number;
     bouncePower?: number;
     snapBackDuration?: number;
+    smoothDuration?: number;
     onSwipe?: (direction: _SwipeDirection) => void;
     onSnapBack?: () => void;
     // TODO: find a way to pass it as nullable
