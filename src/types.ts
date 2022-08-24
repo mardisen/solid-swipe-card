@@ -16,10 +16,13 @@ export type _SwipeCardRef = {
 export type _SwipeCardProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'style'> & {
     style?: JSX.CSSProperties;
     threshold?: number;
+    minSpeed?: number;
+    // TODO: add releaseOutsideViewport flag and functionality
     rotationMultiplier?: number;
     maxRotation?: number;
     bouncePower?: number;
     snapBackDuration?: number;
+    smoothDuration?: number;
     onSwipe?: (direction: _SwipeDirection) => void;
     onSnapBack?: () => void;
     // TODO: find a way to pass it as nullable

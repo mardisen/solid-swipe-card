@@ -61,7 +61,7 @@ describe('SwipeCard', () => {
         unmount();
     });
 
-    it('doesn\'t move if it isn\'t grabbed', async () => {
+    it("doesn't move if it isn't grabbed", async () => {
         const apiRef: SwipeCardRef = {};
         const { getByTestId, unmount } = render(() => <SwipeCard id="test-id" apiRef={apiRef} />);
         const element = getByTestId('test-id') as HTMLElement;
@@ -73,7 +73,7 @@ describe('SwipeCard', () => {
         unmount();
     });
 
-    it('doesn\'t move if it isn\'t grabbed (touch)', async () => {
+    it("doesn't move if it isn't grabbed (touch)", async () => {
         const apiRef: SwipeCardRef = {};
         const { getByTestId, unmount } = render(() => <SwipeCard id="test-id" apiRef={apiRef} />);
         const element = getByTestId('test-id') as HTMLElement;
@@ -101,7 +101,7 @@ describe('SwipeCard', () => {
         unmount();
     });
 
-    it('doesn\'t snap back if it has not been swiped', async () => {
+    it("doesn't snap back if it has not been swiped", async () => {
         const apiRef: SwipeCardRef = {};
         const { getByTestId, unmount } = render(() => <SwipeCard id="test-id" apiRef={apiRef} />);
         const element = getByTestId('test-id') as HTMLElement;
@@ -151,6 +151,20 @@ describe('SwipeCard', () => {
         await apiRef.snapBack();
         expect(apiRef.swiped()).toBeFalsy();
         expect(mockCallback).toBeCalled();
+        unmount();
+    });
+
+    it('will release at minSpeed speed', async () => {
+        const apiRef: SwipeCardRef = {};
+        const { getByTestId, unmount } = render(() => <SwipeCard id="test-id" apiRef={apiRef} minSpeed={3000} />);
+        const element = getByTestId('test-id') as HTMLElement;
+
+        fireEvent.mouseDown(element, { clientX: 0, clientY: 0 });
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        fireEvent.mouseMove(element, { clientX: 300, clientY: 0 });
+        fireEvent.mouseUp(element);
+
+        expect(apiRef.swiped()).toBeTruthy();
         unmount();
     });
 });

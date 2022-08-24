@@ -1,8 +1,9 @@
 # Solid Swipe Card
 
-![NPM Version](https://img.shields.io/npm/v/solid-swipe-card)
-![License](https://img.shields.io/github/license/mardisen/solid-swipe-card)
-![Deploy](https://img.shields.io/github/deployments/mardisen/solid-swipe-card/production?label=deploy)
+[![NPM Version](https://img.shields.io/npm/v/solid-swipe-card)](https://www.npmjs.com/package/solid-swipe-card)
+[![License](https://img.shields.io/github/license/mardisen/solid-swipe-card)](LICENSE)
+[![Deploy](https://img.shields.io/github/deployments/mardisen/solid-swipe-card/production?label=deploy)](https://solidjs-swipe-card-mardisen.vercel.app)
+[![Codecov](https://img.shields.io/codecov/c/gh/mardisen/solid-swipe-card)](https://app.codecov.io/gh/mardisen/solid-swipe-card)
 
 A SolidJS swipeable card component (tinder-like) heavily inspired by [`react-tinder-card`](https://github.com/3DJakob/react-tinder-card).
 
@@ -93,6 +94,14 @@ Additional style to assign to the component. Currently, style as a `string` is n
 
 The threshold for considering wether or not a card is swiped. It is based on the speed of which the component moves (px/s). A lower number will make it easier to register a swipe, a higher one will make it harder.
 
+### `minSpeed`
+
+-   optional
+-   type: `number`
+-   default: `0`
+
+The minimum speed (px/s) at which the card will travel once it is released.
+
 ### `rotationMultiplier`
 
 -   optional
@@ -127,6 +136,18 @@ Keep it between 0 and 0.5 to avoid the card flinging on the other side of the sc
 
 The duration of the animation (in ms) triggered by [`snapBack`](#snapback).
 It will animate the snapback for its full duration, then when bouncing back to the original position, it will animate for half of its duration after a delay of 25ms.
+
+### `smoothDuration`
+
+-   optional
+-   type: `number`
+-   default: `40`
+
+The transition duration (in ms) when moving the card.
+A higher value will make the card delay it's movement when following the mouse.
+A lower number will reduce the smoothing effect, and it won't have any visual effect when it goes below the refresh rate.
+Recommended values are between `150` and `0`
+
 
 ### `onSwipe`
 

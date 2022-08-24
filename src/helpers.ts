@@ -4,9 +4,11 @@ import { _SwipeCardProps, _Speed, _Coordinate, _TemporalCoordinate } from './typ
 export const _PropsDefault: _SwipeCardProps = {
     style: {},
     threshold: 300,
+    minSpeed: 0,
     rotationMultiplier: 7.5,
     maxRotation: 90,
     snapBackDuration: 300,
+    smoothDuration: 40,
     bouncePower: 0.1,
     onSwipe: () => {},
     onSnapBack: () => {},
@@ -32,10 +34,6 @@ export const _calcDirection = (speed: _Speed): _SwipeDirection => {
         if (speed.y >= 0) return _SwipeDirection.UP;
         else return _SwipeDirection.DOWN;
     }
-};
-
-export const _pythagoras = (coords: _Coordinate): number => {
-    return Math.sqrt(Math.pow(coords.x, 2) + Math.pow(coords.y, 2));
 };
 
 export const _mouseCoordinates = (event: MouseEvent): _Coordinate => ({
