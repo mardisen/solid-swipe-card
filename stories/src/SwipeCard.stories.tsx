@@ -74,8 +74,17 @@ SlowReturn.args = {
 export const NoRotation = SnapBackTemplate.bind({});
 NoRotation.args = {
     text: 'I refuse to rotate',
-    rotationMultiplier: 0
+    rotationMultiplier: 0,
+    maxRotation: 0
 };
+
+export const HighRotation = SnapBackTemplate.bind({});
+HighRotation.args = {
+    text: 'I rotate like crazy',
+    rotationMultiplier: 30,
+    maxRotation: 1800
+};
+
 
 export const FastRelease = SnapBackTemplate.bind({});
 FastRelease.args = {
