@@ -5,7 +5,6 @@ import {
     _extractDivProps,
     _mouseCoordinates,
     _PropsDefault,
-    _pythagoras,
     _touchCoordinates
 } from '../src/helpers';
 
@@ -44,12 +43,6 @@ describe('helpers', () => {
         direction = _calcDirection(speed);
 
         expect(direction).toBe(SwipeDirection.LEFT);
-    });
-    it('calculates pythagoras', () => {
-        const coords = { x: 3, y: 4 };
-        const pythagoras = _pythagoras(coords);
-
-        expect(pythagoras).toBe(5);
     });
     it('calculates coordinates from mouse event', () => {
         const mouseEvent = new MouseEvent('mousemove', { clientX: 100, clientY: 100 });

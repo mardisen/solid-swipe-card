@@ -46,9 +46,11 @@ export const Index = SnapBackTemplate.bind({});
 Index.args = {
     text: 'Swipe me!',
     threshold: 300,
+    minSpeed: 0,
     rotationMultiplier: 7.5,
     maxRotation: 90,
     snapBackDuration: 300,
+    smoothDuration: 40,
     bouncePower: 0.1
 };
 
@@ -73,4 +75,16 @@ export const NoRotation = SnapBackTemplate.bind({});
 NoRotation.args = {
     text: 'I refuse to rotate',
     rotationMultiplier: 0
+};
+
+export const FastRelease = SnapBackTemplate.bind({});
+FastRelease.args = {
+    text: "I'm speed",
+    minSpeed: 3000
+};
+
+export const Choppy = SnapBackTemplate.bind({});
+Choppy.args = {
+    text: "I'm choppy",
+    smoothDuration: 0
 };
