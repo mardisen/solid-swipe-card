@@ -1,9 +1,10 @@
-import { SwipeCard, SwipeCardProps } from '../../src';
+import { SwipeCard, SwipeCardProps, SwipeDirection } from '../../src';
 import './index.css';
 
 type SwipeCardArgs = SwipeCardProps & {
     text: string;
     snapBackText: string;
+    velocity?: number
 };
 
 export default {
@@ -33,7 +34,48 @@ const SnapBackTemplate = (args: SwipeCardArgs) => {
         <div class="flex flex-col items-center">
             <BaseCard {...args} apiRef={apiRef} children={args.text ? args.text : args.children} />
             <button
-                class="p-2 my-4 text-white bg-gradient-to-br from-emerald-500 to-indigo-400 rounded shadow-md"
+                class="p-2 my-4 text-white bg-gradient-to-tr from-emerald-500 to-indigo-400 rounded shadow-md"
+                onClick={apiRef.snapBack}
+            >
+                Bring it back!
+            </button>
+        </div>
+    );
+};
+
+const SwipeTemplate = (args: SwipeCardArgs) => {
+    let apiRef: any = {};
+    return (
+        <div class="flex flex-col items-center">
+            <BaseCard {...args} apiRef={apiRef} children={args.text ? args.text : args.children} />
+            <div class="flex flex-row space-x-2">
+                <button
+                    class="p-2 my-4 text-white bg-gradient-to-r from-emerald-500 to-indigo-400 rounded shadow-md"
+                    onClick={() => apiRef.swipe(SwipeDirection.LEFT, args.velocity)}
+                >
+                    Swipe Left
+                </button>
+                <button
+                    class="p-2 my-4 text-white bg-gradient-to-r from-indigo-400 to-purple-500 rounded shadow-md"
+                    onClick={() => apiRef.swipe(SwipeDirection.RIGHT, args.velocity)}
+                >
+                    Swipe Right
+                </button>
+                <button
+                    class="p-2 my-4 text-white bg-gradient-to-r from-purple-500 to-rose-500 rounded shadow-md"
+                    onClick={() => apiRef.swipe(SwipeDirection.UP, args.velocity)}
+                >
+                    Swipe Up
+                </button>
+                <button
+                    class="p-2 my-4 text-white bg-gradient-to-r from-rose-500 to-orange-500 rounded shadow-md"
+                    onClick={() => apiRef.swipe(SwipeDirection.DOWN, args.velocity)}
+                >
+                    Swipe Down
+                </button>
+            </div>
+            <button
+                class="p-2 text-white bg-gradient-to-tr from-emerald-500 to-indigo-400 rounded shadow-md"
                 onClick={apiRef.snapBack}
             >
                 Bring it back!
@@ -85,7 +127,6 @@ HighRotation.args = {
     maxRotation: 1800
 };
 
-
 export const FastRelease = SnapBackTemplate.bind({});
 FastRelease.args = {
     text: "I'm speed",
@@ -96,4 +137,10 @@ export const Choppy = SnapBackTemplate.bind({});
 Choppy.args = {
     text: "I'm choppy",
     smoothDuration: 0
+};
+
+export const SwipeFromAPIRef = SwipeTemplate.bind({});
+SwipeFromAPIRef.args = {
+    text: 'Swipe me!',
+    velocity: 500
 };
