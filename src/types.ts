@@ -10,6 +10,7 @@ export enum _SwipeDirection {
 
 export type _SwipeCardRef = {
     snapBack?: () => Promise<void> | void;
+    swipe?: (direction: _SwipeDirection, velocity?: number) => Promise<void> | void;
     swiped?: Accessor<boolean>;
 };
 
