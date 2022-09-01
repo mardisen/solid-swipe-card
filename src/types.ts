@@ -1,6 +1,7 @@
 import { JSX } from 'solid-js/jsx-runtime';
 import { Accessor } from 'solid-js';
 
+// TODO: use type with strings instead of enum
 export enum _SwipeDirection {
     RIGHT = 'right',
     LEFT = 'left',
@@ -10,6 +11,7 @@ export enum _SwipeDirection {
 
 export type _SwipeCardRef = {
     snapBack?: () => Promise<void> | void;
+    swipe?: (direction: _SwipeDirection, velocity?: number) => Promise<void> | void;
     swiped?: Accessor<boolean>;
 };
 
@@ -23,6 +25,7 @@ export type _SwipeCardProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'style'> 
     bouncePower?: number;
     snapBackDuration?: number;
     smoothDuration?: number;
+    // TODO: allow possible async functions
     onSwipe?: (direction: _SwipeDirection) => void;
     onSnapBack?: () => void;
     // TODO: find a way to pass it as nullable
