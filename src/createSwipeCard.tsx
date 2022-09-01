@@ -7,7 +7,7 @@ import {
     _PropsDefault,
     _touchCoordinates
 } from './helpers';
-import { _Coordinate, _Speed, _SwipeCardProps, _SwipeCardRef, _TemporalCoordinate } from './types';
+import { _Coordinate, _Speed, _SwipeCardProps, _SwipeCardRef, _SwipeDirection, _TemporalCoordinate } from './types';
 
 export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => {
     const props = mergeProps(_PropsDefault, initialProps);
@@ -56,6 +56,11 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
                 rotate(${rotation * -props.bouncePower}deg)`,
                 transition: `ease-out ${props.snapBackDuration / 1000}s`
             });
+            lastPosition = {
+                x: 0,
+                y: 0,
+                timestamp: new Date().getTime()
+            };
 
             await new Promise<void>((resolve) =>
                 setTimeout(() => {
@@ -111,16 +116,62 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
         }
     };
 
+    const swipe = async (direction: _SwipeDirection, velocity?: number) => {
+        const finalVelocity = velocity ? velocity : props.minSpeed || props.threshold;
+        const diagonal = Math.hypot(document.body.clientWidth, document.body.clientHeight);
+        const multiplier = diagonal / finalVelocity;
+
+        let speedX = 0;
+        let speedY = 0;
+
+        switch (direction) {
+            case _SwipeDirection.RIGHT:
+                speedX = 1;
+                break;
+            case _SwipeDirection.LEFT:
+                speedX = -1;
+                break;
+            case _SwipeDirection.UP:
+                speedY = -1;
+                break;
+            case _SwipeDirection.DOWN:
+                speedY = 1;
+                break;
+        }
+
+        const finalPosition: _Coordinate = {
+            x: lastPosition.x + finalVelocity * speedX * multiplier,
+            y: lastPosition.y + finalVelocity * speedY * multiplier
+        };
+
+        const finalRotation = rotation + props.maxRotation * (Math.random() - 0.5);
+
+        setStyle({
+            transform: `translate(${finalPosition.x}px, ${finalPosition.y}px)
+                rotate(${finalRotation}deg)`,
+            transition: `ease-out ${multiplier}s`
+        });
+
+        lastPosition = { ...lastPosition, ...finalPosition };
+        setSwiped(true);
+
+        props.onSwipe(direction);
+    };
+
     const onMouseDown: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = (event) => {
         event.preventDefault();
-        isDragging = true;
-        offset = _mouseCoordinates(event);
+        if (!swiped()) {
+            isDragging = true;
+            offset = _mouseCoordinates(event);
+        }
     };
 
     const onTouchStart: JSX.EventHandlerUnion<HTMLDivElement, TouchEvent> = (event) => {
         event.preventDefault();
-        isDragging = true;
-        offset = _touchCoordinates(event);
+        if (!swiped()) {
+            isDragging = true;
+            offset = _touchCoordinates(event);
+        }
     };
 
     const onMouseMove: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = (event) => {
@@ -159,6 +210,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
 
     // Ref setup
     props.apiRef.snapBack = snapBack;
+    props.apiRef.swipe = swipe;
     props.apiRef.swiped = swiped;
 
     return { element, ref: props.ref, apiRef };
