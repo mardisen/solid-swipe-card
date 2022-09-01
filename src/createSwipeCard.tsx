@@ -117,6 +117,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
     };
 
     const swipe = async (direction: _SwipeDirection, velocity?: number) => {
+        if (swiped()) return;
         const finalVelocity = velocity ? velocity : props.minSpeed || props.threshold;
         const diagonal = Math.hypot(document.body.clientWidth, document.body.clientHeight);
         const multiplier = diagonal / finalVelocity;
