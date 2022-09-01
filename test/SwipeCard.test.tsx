@@ -1,7 +1,8 @@
 import { render, fireEvent } from 'solid-testing-library';
 
-import { SwipeCard, SwipeCardRef } from '../src';
+import { SwipeCard, SwipeCardRef, SwipeDirection } from '../src';
 
+// TODO: Categorize using nested describe
 describe('SwipeCard', () => {
     it('renders a div', () => {
         const { getByTestId, unmount } = render(() => <SwipeCard id="test-id" />);
@@ -85,6 +86,8 @@ describe('SwipeCard', () => {
         unmount();
     });
 
+    // TODO: add doesn't grab if it has been swiped
+
     it('can be snapped back', async () => {
         const apiRef: SwipeCardRef = {};
         const { getByTestId, unmount } = render(() => <SwipeCard id="test-id" apiRef={apiRef} />);
@@ -163,6 +166,76 @@ describe('SwipeCard', () => {
         await new Promise((resolve) => setTimeout(resolve, 500));
         fireEvent.mouseMove(element, { clientX: 300, clientY: 0 });
         fireEvent.mouseUp(element);
+
+        expect(apiRef.swiped()).toBeTruthy();
+        unmount();
+    });
+
+    it('swipe from apiRef `swipe()` call', async () => {
+        const apiRef: SwipeCardRef = {};
+        const { unmount } = render(() => <SwipeCard id="test-id" apiRef={apiRef} />);
+
+        apiRef.swipe(SwipeDirection.LEFT);
+
+        expect(apiRef.swiped()).toBeTruthy();
+        unmount();
+    });
+
+    it('swipe from apiRef `swipe()` call using custom velocity', async () => {
+        const apiRef: SwipeCardRef = {};
+        const { unmount } = render(() => <SwipeCard id="test-id" apiRef={apiRef} />);
+
+        apiRef.swipe(SwipeDirection.LEFT, 500);
+
+        expect(apiRef.swiped()).toBeTruthy();
+        unmount();
+    });
+
+    it('swipe from apiRef `swipe()` call using `minSpeed` as fallBack', async () => {
+        const apiRef: SwipeCardRef = {};
+        const { unmount } = render(() => <SwipeCard id="test-id" apiRef={apiRef} minSpeed={3000} />);
+
+        apiRef.swipe(SwipeDirection.LEFT);
+
+        expect(apiRef.swiped()).toBeTruthy();
+        unmount();
+    });
+
+    it("won't swipe from apiRef `swipe()` call if `swiped()` is true", async () => {
+        const mockCallback = jest.fn();
+        const apiRef: SwipeCardRef = {};
+        const { unmount } = render(() => (
+            <SwipeCard id="test-id" onSwipe={mockCallback} apiRef={apiRef} minSpeed={3000} />
+        ));
+
+        await apiRef.swipe(SwipeDirection.LEFT);
+        expect(apiRef.swiped()).toBeTruthy();
+
+        await apiRef.swipe(SwipeDirection.LEFT);
+        expect(mockCallback).toBeCalledTimes(1);
+        unmount();
+    });
+
+    it('`swipe()` can swipe in multiple directions', async () => {
+        const apiRef: SwipeCardRef = {};
+        const { unmount } = render(() => <SwipeCard id="test-id" apiRef={apiRef} minSpeed={3000} />);
+
+        apiRef.swipe(SwipeDirection.LEFT);
+
+        expect(apiRef.swiped()).toBeTruthy();
+
+        await apiRef.snapBack();
+        apiRef.swipe(SwipeDirection.RIGHT);
+
+        expect(apiRef.swiped()).toBeTruthy();
+
+        await apiRef.snapBack();
+        apiRef.swipe(SwipeDirection.UP);
+
+        expect(apiRef.swiped()).toBeTruthy();
+
+        await apiRef.snapBack();
+        apiRef.swipe(SwipeDirection.DOWN);
 
         expect(apiRef.swiped()).toBeTruthy();
         unmount();
