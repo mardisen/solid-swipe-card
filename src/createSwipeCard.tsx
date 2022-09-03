@@ -126,16 +126,16 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
         let speedY = 0;
 
         switch (direction) {
-            case _SwipeDirection.RIGHT:
+            case 'right':
                 speedX = 1;
                 break;
-            case _SwipeDirection.LEFT:
+            case 'left':
                 speedX = -1;
                 break;
-            case _SwipeDirection.UP:
+            case 'up':
                 speedY = -1;
                 break;
-            case _SwipeDirection.DOWN:
+            case 'down':
                 speedY = 1;
                 break;
         }

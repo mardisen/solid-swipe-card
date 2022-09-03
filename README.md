@@ -185,12 +185,7 @@ const apiRef: any = {};
 The enum that defines a direction defined as follows:
 
 ```ts
-enum SwipeDirection {
-    RIGHT = 'right',
-    LEFT = 'left',
-    UP = 'up',
-    DOWN = 'down'
-}
+type SwipeDirection = 'right' | 'left' | 'up' | 'down';
 ```
 
 ### SwipeCardRef

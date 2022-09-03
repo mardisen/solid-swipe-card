@@ -24,25 +24,25 @@ describe('helpers', () => {
 
         let direction = _calcDirection(speed);
 
-        expect(direction).toBe(SwipeDirection.UP);
+        expect(direction).toBe('up');
 
         speed = { x: 100, y: 0 };
 
         direction = _calcDirection(speed);
 
-        expect(direction).toBe(SwipeDirection.RIGHT);
+        expect(direction).toBe('right');
 
         speed = { x: 0, y: -100 };
 
         direction = _calcDirection(speed);
 
-        expect(direction).toBe(SwipeDirection.DOWN);
+        expect(direction).toBe('down');
 
         speed = { x: -100, y: 0 };
 
         direction = _calcDirection(speed);
 
-        expect(direction).toBe(SwipeDirection.LEFT);
+        expect(direction).toBe('left');
     });
     it('calculates coordinates from mouse event', () => {
         const mouseEvent = new MouseEvent('mousemove', { clientX: 100, clientY: 100 });

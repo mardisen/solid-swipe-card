@@ -1,13 +1,7 @@
 import { JSX } from 'solid-js/jsx-runtime';
 import { Accessor } from 'solid-js';
 
-// TODO: use type with strings instead of enum
-export enum _SwipeDirection {
-    RIGHT = 'right',
-    LEFT = 'left',
-    UP = 'up',
-    DOWN = 'down'
-}
+export type _SwipeDirection = 'right' | 'left' | 'up' | 'down';
 
 export type _SwipeCardRef = {
     snapBack?: () => Promise<void> | void;
