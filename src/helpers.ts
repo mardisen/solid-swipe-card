@@ -28,11 +28,11 @@ export const _calcSpeed = (oldCoords: _TemporalCoordinate, newCoords: _TemporalC
 
 export const _calcDirection = (speed: _Speed): _SwipeDirection => {
     if (Math.abs(speed.x) > Math.abs(speed.y)) {
-        if (speed.x >= 0) return _SwipeDirection.RIGHT;
-        else return _SwipeDirection.LEFT;
+        if (speed.x >= 0) return 'right';
+        return 'left';
     } else {
-        if (speed.y >= 0) return _SwipeDirection.UP;
-        else return _SwipeDirection.DOWN;
+        if (speed.y >= 0) return 'up';
+        return 'down';
     }
 };
 

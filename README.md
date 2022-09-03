@@ -185,12 +185,7 @@ const apiRef: any = {};
 The enum that defines a direction defined as follows:
 
 ```ts
-enum SwipeDirection {
-    RIGHT = 'right',
-    LEFT = 'left',
-    UP = 'up',
-    DOWN = 'down'
-}
+type SwipeDirection = 'right' | 'left' | 'up' | 'down';
 ```
 
 ### SwipeCardRef
@@ -202,6 +197,13 @@ The type that defines the methods and properties available to interact with the 
 -   returns: `Promise<void>`
 
 It will reset to the original position the card if it has been swiped. Since it is async, it can be awaited if needed.
+
+#### `swipe()`
+
+-   type: `(direction: _SwipeDirection, velocity?: number) => Promise<void> | void`
+-   returns: `Promise<void> | void`
+
+This method will swipe the card in the specified direction at the provided velocity. If `velocity` is not set, it will fallback first on `props.minSpeed` and then on `props.threshold`.
 
 #### `swiped()`
 

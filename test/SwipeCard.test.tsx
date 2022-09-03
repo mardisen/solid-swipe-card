@@ -1,6 +1,6 @@
 import { render, fireEvent } from 'solid-testing-library';
 
-import { SwipeCard, SwipeCardRef, SwipeDirection } from '../src';
+import { SwipeCard, SwipeCardRef } from '../src';
 
 // TODO: Categorize using nested describe
 describe('SwipeCard', () => {
@@ -175,7 +175,7 @@ describe('SwipeCard', () => {
         const apiRef: SwipeCardRef = {};
         const { unmount } = render(() => <SwipeCard id="test-id" apiRef={apiRef} />);
 
-        apiRef.swipe(SwipeDirection.LEFT);
+        apiRef.swipe('left');
 
         expect(apiRef.swiped()).toBeTruthy();
         unmount();
@@ -185,7 +185,7 @@ describe('SwipeCard', () => {
         const apiRef: SwipeCardRef = {};
         const { unmount } = render(() => <SwipeCard id="test-id" apiRef={apiRef} />);
 
-        apiRef.swipe(SwipeDirection.LEFT, 500);
+        apiRef.swipe('left', 500);
 
         expect(apiRef.swiped()).toBeTruthy();
         unmount();
@@ -195,7 +195,7 @@ describe('SwipeCard', () => {
         const apiRef: SwipeCardRef = {};
         const { unmount } = render(() => <SwipeCard id="test-id" apiRef={apiRef} minSpeed={3000} />);
 
-        apiRef.swipe(SwipeDirection.LEFT);
+        apiRef.swipe('left');
 
         expect(apiRef.swiped()).toBeTruthy();
         unmount();
@@ -208,10 +208,10 @@ describe('SwipeCard', () => {
             <SwipeCard id="test-id" onSwipe={mockCallback} apiRef={apiRef} minSpeed={3000} />
         ));
 
-        await apiRef.swipe(SwipeDirection.LEFT);
+        await apiRef.swipe('left');
         expect(apiRef.swiped()).toBeTruthy();
 
-        await apiRef.swipe(SwipeDirection.LEFT);
+        await apiRef.swipe('left');
         expect(mockCallback).toBeCalledTimes(1);
         unmount();
     });
@@ -220,22 +220,22 @@ describe('SwipeCard', () => {
         const apiRef: SwipeCardRef = {};
         const { unmount } = render(() => <SwipeCard id="test-id" apiRef={apiRef} minSpeed={3000} />);
 
-        apiRef.swipe(SwipeDirection.LEFT);
+        apiRef.swipe('left');
 
         expect(apiRef.swiped()).toBeTruthy();
 
         await apiRef.snapBack();
-        apiRef.swipe(SwipeDirection.RIGHT);
+        apiRef.swipe('right');
 
         expect(apiRef.swiped()).toBeTruthy();
 
         await apiRef.snapBack();
-        apiRef.swipe(SwipeDirection.UP);
+        apiRef.swipe('up');
 
         expect(apiRef.swiped()).toBeTruthy();
 
         await apiRef.snapBack();
-        apiRef.swipe(SwipeDirection.DOWN);
+        apiRef.swipe('down');
 
         expect(apiRef.swiped()).toBeTruthy();
         unmount();

@@ -1,10 +1,10 @@
-import { SwipeCard, SwipeCardProps, SwipeDirection } from '../../src';
+import { SwipeCard, SwipeCardProps } from '../../src';
 import './index.css';
 
 type SwipeCardArgs = SwipeCardProps & {
     text: string;
     snapBackText: string;
-    velocity?: number
+    velocity?: number;
 };
 
 export default {
@@ -51,25 +51,25 @@ const SwipeTemplate = (args: SwipeCardArgs) => {
             <div class="flex flex-row space-x-2">
                 <button
                     class="p-2 my-4 text-white bg-gradient-to-r from-emerald-500 to-indigo-400 rounded shadow-md"
-                    onClick={() => apiRef.swipe(SwipeDirection.LEFT, args.velocity)}
+                    onClick={() => apiRef.swipe('left', args.velocity)}
                 >
                     Swipe Left
                 </button>
                 <button
                     class="p-2 my-4 text-white bg-gradient-to-r from-indigo-400 to-purple-500 rounded shadow-md"
-                    onClick={() => apiRef.swipe(SwipeDirection.RIGHT, args.velocity)}
+                    onClick={() => apiRef.swipe('right', args.velocity)}
                 >
                     Swipe Right
                 </button>
                 <button
                     class="p-2 my-4 text-white bg-gradient-to-r from-purple-500 to-rose-500 rounded shadow-md"
-                    onClick={() => apiRef.swipe(SwipeDirection.UP, args.velocity)}
+                    onClick={() => apiRef.swipe('up', args.velocity)}
                 >
                     Swipe Up
                 </button>
                 <button
                     class="p-2 my-4 text-white bg-gradient-to-r from-rose-500 to-orange-500 rounded shadow-md"
-                    onClick={() => apiRef.swipe(SwipeDirection.DOWN, args.velocity)}
+                    onClick={() => apiRef.swipe('down', args.velocity)}
                 >
                     Swipe Down
                 </button>
