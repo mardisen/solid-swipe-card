@@ -1,6 +1,10 @@
 [
     {
-        "path": "dist/index.d.ts",
+        "path": "dist/index.cjs.ts",
+        "limit": "10 KB"
+    },
+    {
+        "path": "dist/index.esm.js",
         "limit": "10 KB"
     }
 ]
