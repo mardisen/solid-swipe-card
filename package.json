@@ -4,7 +4,7 @@
     "author": "mardisen",
     "repository": "mardisen/solid-swipe-card",
     "homepage": "https://solid-swipe-card-mardisen.vercel.app/",
-    "version": "0.2.3",
+    "version": "1.0.0-prerelease",
     "license": "MIT",
     "private": false,
     "keywords": [
