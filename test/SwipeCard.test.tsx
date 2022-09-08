@@ -99,6 +99,35 @@ describe('SwipeCard', () => {
             expect(apiRef.swiped()).toBeTruthy();
             unmount();
         });
+        
+        it("doesn't grab if it has been swiped", async () => {
+            const mockCallback = jest.fn();
+            const apiRef: SwipeCardRef = {};
+            const { getByTestId, unmount } = render(() => (
+                <SwipeCard id="test-id" apiRef={apiRef} onSwipe={mockCallback} />
+            ));
+            const element = getByTestId('test-id') as HTMLElement;
+
+            apiRef.swipe('right');
+
+            expect(apiRef.swiped()).toBeTruthy();
+            expect(mockCallback).toBeCalledTimes(1);
+
+            fireEvent.mouseDown(element);
+            fireEvent.mouseMove(element, { clientX: 300, clientY: 0 });
+            fireEvent.mouseUp(element);
+
+            expect(apiRef.swiped()).toBeTruthy();
+            expect(mockCallback).toBeCalledTimes(1);
+            
+            fireEvent.touchStart(element, { touches: [{ clientX: 0, clientY: 0 }] });
+            fireEvent.touchMove(element, { touches: [{ clientX: 300, clientY: 0 }] });
+            fireEvent.touchEnd(element);
+
+            expect(apiRef.swiped()).toBeTruthy();
+            expect(mockCallback).toBeCalledTimes(1);
+            unmount();
+        });
     });
 
     describe('Callbacks', () => {
