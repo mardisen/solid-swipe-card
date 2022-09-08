@@ -1,4 +1,4 @@
-import { SwipeCardProps, SwipeDirection } from '../src';
+import { SwipeCardProps } from '../src';
 import {
     _calcDirection,
     _calcSpeed,
