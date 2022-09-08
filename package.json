@@ -4,7 +4,7 @@
     "author": "mardisen",
     "repository": "mardisen/solid-swipe-card",
     "homepage": "https://solid-swipe-card-mardisen.vercel.app/",
-    "version": "1.0.0-prerelease",
+    "version": "1.0.0-prerelease2",
     "license": "MIT",
     "private": false,
     "keywords": [
@@ -20,8 +20,8 @@
         "drag",
         "draggable"
     ],
-    "main": "dist/index.d.ts",
-    "module": "dist/index.js",
+    "main": "dist/index.cjs.ts",
+    "module": "dist/index.esm.js",
     "files": [
         "dist",
         "src"
@@ -30,13 +30,11 @@
         "node": ">=10"
     },
     "scripts": {
-        "start": "tsc -w",
-        "build": "tsc",
+        "build": "rollup -c",
         "test": "jest",
         "coverage": "jest --coverage",
         "test-watch": "jest --watch",
         "lint": "eslint src/**",
-        "prepare": "tsc",
         "size": "size-limit",
         "postinstall": "husky install",
         "prepack": "pinst --disable",
@@ -47,8 +45,7 @@
         "changelog": "github_changelog_generator -u mardisen -p solid-swipe-card"
     },
     "peerDependencies": {
-        "solid-js": ">=1.0.0<2",
-        "tslib": ">=2.0.0<3"
+        "solid-js": ">=1.0.0<2"
     },
     "devDependencies": {
         "@babel/core": "^7.18.9",
@@ -72,14 +69,21 @@
         "pinst": "^3.0.0",
         "prettier": "^2.7.1",
         "regenerator-runtime": "^0.13.9",
+        "rollup": "^2.52.3",
+        "rollup-plugin-babel": "^4.4.0",
+        "rollup-plugin-commonjs": "^10.1.0",
+        "rollup-plugin-delete": "^2.0.0",
+        "rollup-plugin-dts": "^3.0.2",
+        "rollup-plugin-node-resolve": "^5.2.0",
+        "rollup-plugin-peer-deps-external": "^2.2.4",
         "size-limit": "^8.0.0",
         "solid-jest": "^0.2.0",
         "solid-testing-library": "^0.3.0",
         "ts-jest": "^28.0.7",
+        "tslib": "^2.4.0",
         "typescript": "^4.7.4"
     },
     "dependencies": {
-        "solid-js": "^1.4.8",
-        "tslib": "^2.4.0"
+        "solid-js": "^1.4.8"
     }
 }

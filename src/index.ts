@@ -1,6 +1,6 @@
 import { _createSwipeCard } from './createSwipeCard';
 import { _SwipeCard } from './SwipeCard';
-import { _SwipeCardProps, _SwipeCardRef, _SwipeDirection } from './types';
+import type { _SwipeCardProps, _SwipeCardRef, _SwipeDirection } from './types';
 
 export {
     _SwipeCard as SwipeCard,
