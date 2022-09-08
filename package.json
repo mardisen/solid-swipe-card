@@ -4,7 +4,7 @@
     "author": "mardisen",
     "repository": "mardisen/solid-swipe-card",
     "homepage": "https://solid-swipe-card-mardisen.vercel.app/",
-    "version": "0.2.3",
+    "version": "1.0.0-prerelease",
     "license": "MIT",
     "private": false,
     "keywords": [
@@ -21,7 +21,7 @@
         "draggable"
     ],
     "main": "dist/index.d.ts",
-    "module": "dist/solid-swipe-card.esm.js",
+    "module": "dist/index.js",
     "files": [
         "dist",
         "src"
@@ -47,7 +47,8 @@
         "changelog": "github_changelog_generator -u mardisen -p solid-swipe-card"
     },
     "peerDependencies": {
-        "solid-js": ">=1.0.0<2"
+        "solid-js": ">=1.0.0<2",
+        "tslib": ">=2.0.0<3"
     },
     "devDependencies": {
         "@babel/core": "^7.18.9",
@@ -75,10 +76,10 @@
         "solid-jest": "^0.2.0",
         "solid-testing-library": "^0.3.0",
         "ts-jest": "^28.0.7",
-        "tslib": "^2.4.0",
         "typescript": "^4.7.4"
     },
     "dependencies": {
-        "solid-js": "^1.4.8"
+        "solid-js": "^1.4.8",
+        "tslib": "^2.4.0"
     }
 }
