@@ -4,7 +4,7 @@
     "author": "mardisen",
     "repository": "mardisen/solid-swipe-card",
     "homepage": "https://solid-swipe-card-mardisen.vercel.app/",
-    "version": "1.0.0-prerelease2",
+    "version": "1.0.0-prerelease3",
     "license": "MIT",
     "private": false,
     "keywords": [
@@ -32,6 +32,7 @@
     "scripts": {
         "build": "rollup -c",
         "test": "jest",
+        "prepare": "rollup -c",
         "coverage": "jest --coverage",
         "test-watch": "jest --watch",
         "lint": "eslint src/**",

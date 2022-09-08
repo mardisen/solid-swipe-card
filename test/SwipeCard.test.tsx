@@ -99,7 +99,7 @@ describe('SwipeCard', () => {
             expect(apiRef.swiped()).toBeTruthy();
             unmount();
         });
-        
+
         it("doesn't grab if it has been swiped", async () => {
             const mockCallback = jest.fn();
             const apiRef: SwipeCardRef = {};
@@ -119,7 +119,7 @@ describe('SwipeCard', () => {
 
             expect(apiRef.swiped()).toBeTruthy();
             expect(mockCallback).toBeCalledTimes(1);
-            
+
             fireEvent.touchStart(element, { touches: [{ clientX: 0, clientY: 0 }] });
             fireEvent.touchMove(element, { touches: [{ clientX: 300, clientY: 0 }] });
             fireEvent.touchEnd(element);
@@ -193,6 +193,7 @@ describe('SwipeCard', () => {
                 const element = getByTestId('test-id') as HTMLElement;
 
                 fireEvent.mouseDown(element, { clientX: 0, clientY: 0 });
+                await new Promise((resolve) => setTimeout(resolve, 500));
                 fireEvent.mouseMove(element, { clientX: 0, clientY: 0 });
                 fireEvent.mouseUp(element);
 
