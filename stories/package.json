@@ -26,8 +26,8 @@
         "node": ">=10"
     },
     "scripts": {
-        "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook"
+        "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
+        "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider build-storybook"
     },
     "peerDependencies": {
         "solid-js": ">=1.0.0<2"
