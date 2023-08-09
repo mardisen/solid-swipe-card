@@ -40,7 +40,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
         setStyle({
             transform: `translate(${finalPosition.x}px, ${finalPosition.y}px)
             rotate(${rotation}deg)`,
-            transition: `ease-out ${props.smoothDuration / 1000}s`
+            transition: `ease-out ${props.smoothDuration}ms`
         });
 
         lastPosition = finalPosition;
@@ -54,7 +54,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
                     lastPosition.y * -props.bouncePower
                 }px)
                 rotate(${rotation * -props.bouncePower}deg)`,
-                transition: `ease-out ${props.snapBackDuration / 1000}s`
+                transition: `ease-out ${props.snapBackDuration}ms`
             });
             lastPosition = {
                 x: 0,

@@ -122,7 +122,7 @@ NoRotation.args = {
 
 export const HighRotation = SnapBackTemplate.bind({});
 HighRotation.args = {
-    text: 'I rotate like crazy',
+    text: 'I spin like crazy',
     rotationMultiplier: 30,
     maxRotation: 1800
 };
@@ -135,7 +135,7 @@ FastRelease.args = {
 
 export const Choppy = SnapBackTemplate.bind({});
 Choppy.args = {
-    text: "I'm choppy",
+    text: "I might be choppy on low refresh rates",
     smoothDuration: 0
 };
 

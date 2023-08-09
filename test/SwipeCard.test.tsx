@@ -100,7 +100,7 @@ describe('SwipeCard', () => {
             unmount();
         });
 
-        it("doesn't grab if it has been swiped", async () => {
+        it("can't be grabbed if it has been swiped", async () => {
             const mockCallback = jest.fn();
             const apiRef: SwipeCardRef = {};
             const { getByTestId, unmount } = render(() => (
