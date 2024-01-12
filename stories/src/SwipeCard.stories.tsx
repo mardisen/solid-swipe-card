@@ -31,7 +31,7 @@ const Template = (args: SwipeCardArgs) => (
 const SnapBackTemplate = (args: SwipeCardArgs) => {
     let apiRef: any = {};
     return (
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center mt-8">
             <BaseCard {...args} apiRef={apiRef} children={args.text ? args.text : args.children} />
             <button
                 class="p-2 my-4 text-white bg-gradient-to-tr from-emerald-500 to-indigo-400 rounded shadow-md"
@@ -46,7 +46,7 @@ const SnapBackTemplate = (args: SwipeCardArgs) => {
 const SwipeTemplate = (args: SwipeCardArgs) => {
     let apiRef: any = {};
     return (
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center mt-8">
             <BaseCard {...args} apiRef={apiRef} children={args.text ? args.text : args.children} />
             <div class="flex flex-row space-x-2">
                 <button
@@ -135,7 +135,7 @@ FastRelease.args = {
 
 export const Choppy = SnapBackTemplate.bind({});
 Choppy.args = {
-    text: "I might be choppy on low refresh rates",
+    text: 'I might be choppy on low refresh rates',
     smoothDuration: 0
 };
 
