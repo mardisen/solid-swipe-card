@@ -1,5 +1,3 @@
-
-
 name: Node.js Package Publish
 
 on:
@@ -19,12 +17,12 @@ jobs:
       - name: Setup NodeJS (yarn)
         uses: actions/setup-node@v3
         with:
-          node-version: 18
-          cache: yarn
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
           always-auth: true
+          cache: yarn
       - name: Install required packages
-        run: yarn install --immutable --ignore-scripts
+        run: yarn install --immutable
       - name: Publish to NPM
         run: yarn publish
         env:
