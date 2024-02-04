@@ -17,21 +17,21 @@ export default {
 
 const BaseCard = (props: SwipeCardProps) => (
     <SwipeCard
-        class="flex relative justify-center items-center p-2 m-auto w-36 h-36 text-center text-white bg-gradient-to-br from-pink-500 to-sky-500 rounded shadow-md"
+        class="flex relative justify-center items-center p-2 m-auto my-4 w-36 h-36 text-center text-white bg-gradient-to-br from-pink-500 to-sky-500 rounded shadow-md"
         {...props}
     />
 );
 
 const Template = (args: SwipeCardArgs) => (
-    <>
+    <div class="flex flex-col items-center">
         <BaseCard {...args} children={args.text ? args.text : args.children} />
-    </>
+    </div>
 );
 
 const SnapBackTemplate = (args: SwipeCardArgs) => {
     let apiRef: any = {};
     return (
-        <div class="flex flex-col items-center mt-8">
+        <div class="flex flex-col items-center">
             <BaseCard {...args} apiRef={apiRef} children={args.text ? args.text : args.children} />
             <button
                 class="p-2 my-4 text-white bg-gradient-to-tr from-emerald-500 to-indigo-400 rounded shadow-md"
@@ -46,7 +46,7 @@ const SnapBackTemplate = (args: SwipeCardArgs) => {
 const SwipeTemplate = (args: SwipeCardArgs) => {
     let apiRef: any = {};
     return (
-        <div class="flex flex-col items-center mt-8">
+        <div class="flex flex-col items-center">
             <BaseCard {...args} apiRef={apiRef} children={args.text ? args.text : args.children} />
             <div class="flex flex-row space-x-2">
                 <button
@@ -75,7 +75,7 @@ const SwipeTemplate = (args: SwipeCardArgs) => {
                 </button>
             </div>
             <button
-                class="p-2 text-white bg-gradient-to-tr from-emerald-500 to-indigo-400 rounded shadow-md"
+                class="p-2 my-4 text-white bg-gradient-to-tr from-emerald-500 to-indigo-400 rounded shadow-md"
                 onClick={apiRef.snapBack}
             >
                 Bring it back!
