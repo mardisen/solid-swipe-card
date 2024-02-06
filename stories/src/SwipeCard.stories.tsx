@@ -29,7 +29,7 @@ const Template = (args: SwipeCardArgs) => (
 );
 
 const SnapBackTemplate = (args: SwipeCardArgs) => {
-    let apiRef: any = {};
+    const apiRef: any = {};
     return (
         <div class="flex overflow-hidden flex-col items-center w-full h-svh">
             <BaseCard {...args} apiRef={apiRef} children={args.text ? args.text : args.children} />
@@ -44,7 +44,7 @@ const SnapBackTemplate = (args: SwipeCardArgs) => {
 };
 
 const SwipeTemplate = (args: SwipeCardArgs) => {
-    let apiRef: any = {};
+    const apiRef: any = {};
     return (
         <div class="flex overflow-hidden flex-col items-center w-full h-svh">
             <BaseCard {...args} apiRef={apiRef} children={args.text ? args.text : args.children} />
