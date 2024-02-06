@@ -79,7 +79,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
         }
     };
 
-    const release = () => {
+    const release = async () => {
         const velocity = Math.hypot(speed.x, speed.y);
         isDragging = false;
         if (velocity < props.threshold) {
@@ -112,7 +112,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
             lastPosition = { ...lastPosition, ...finalPosition };
             setSwiped(true);
 
-            props.onSwipe(_calcDirection(speed));
+            await props.onSwipe(_calcDirection(speed));
         }
     };
 
@@ -156,7 +156,7 @@ export const _createSwipeCard = (initialProps: ParentProps<_SwipeCardProps>) => 
         lastPosition = { ...lastPosition, ...finalPosition };
         setSwiped(true);
 
-        props.onSwipe(direction);
+        await props.onSwipe(direction);
     };
 
     const onMouseDown: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = (event) => {

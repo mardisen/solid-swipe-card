@@ -13,16 +13,13 @@ export type _SwipeCardProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'style'> 
     style?: JSX.CSSProperties;
     threshold?: number;
     minSpeed?: number;
-    // TODO: add releaseOutsideViewport flag and functionality
     rotationMultiplier?: number;
     maxRotation?: number;
     bouncePower?: number;
     snapBackDuration?: number;
     smoothDuration?: number;
-    // TODO: allow possible async functions
-    onSwipe?: (direction: _SwipeDirection) => void;
-    onSnapBack?: () => void;
-    // TODO: find a way to pass it as nullable
+    onSwipe?: (direction: _SwipeDirection) => Promise<void> | void;
+    onSnapBack?: () => Promise<void> | void;
     apiRef?: NonNullable<_SwipeCardRef & any>;
 };
 
