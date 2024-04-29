@@ -21,7 +21,10 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           always-auth: true
           cache: npm
+      - name: Install Dependencies
+        run: yarn
       - name: Publish to NPM
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.YARN_TOKEN }}
+        run: yarn npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
