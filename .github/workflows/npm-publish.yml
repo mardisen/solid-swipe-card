@@ -21,10 +21,13 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           always-auth: true
           cache: npm
+      - name: Disable postinstall and prepare script
+        run: npm pkg set scripts.postinstall="echo no-postinstall" && npm pkg set scripts.prepare="echo no-prepare"
+      - name: Generate package-lock.json
+        run: npm install --package-lock-only
       - name: Install Dependencies
-        run: yarn
+        run: npm ci
       - name: Publish to NPM
-        run: yarn npm publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

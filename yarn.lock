@@ -2269,12 +2269,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@solidjs/router@npm:^0.8.3":
-  version: 0.8.3
-  resolution: "@solidjs/router@npm:0.8.3"
+"@solidjs/router@npm:^0.9.0":
+  version: 0.9.1
+  resolution: "@solidjs/router@npm:0.9.1"
   peerDependencies:
-    solid-js: ^1.5.3
-  checksum: df1c3e983e409ac3e8f1f5ee330e9b6eaae2136e4ec6eb9a635e12863d7eae4f4ccd46a52bb4b06ef1f1d6193d8964dc3e6abaab251a09a4f6aac20fac18c383
+    solid-js: ^1.8.4
+  checksum: 052bc820bd027cd17acb9a5d55c5c6e0ecfd377b5316649c49e1ffac9e681132608bcd198363a597ad817aa7c29ddcfc396474739e319c881f596a1e5180e389
   languageName: node
   linkType: hard
 
@@ -7124,7 +7124,7 @@ __metadata:
     "@rollup/plugin-commonjs": "npm:^25.0.3"
     "@rollup/plugin-node-resolve": "npm:^14.0.1"
     "@size-limit/preset-small-lib": "npm:^8.0.0"
-    "@solidjs/router": "npm:^0.8.3"
+    "@solidjs/router": "npm:^0.9.0"
     "@solidjs/testing-library": "npm:^0.8.4"
     "@testing-library/jest-dom": "npm:^5.16.5"
     "@types/jest": "npm:^28.1.6"
